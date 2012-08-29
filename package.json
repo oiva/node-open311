@@ -4,7 +4,7 @@
   "version": "0.0.8",
   "homepage": "http://civic.io",
   "author": "Mark Headd <mheadd@gmail.com> (http://civic.io)",
-  "main": "./lib/open311",
+  "main": "./open311",
   "repositories" : [
     { "type":"git", "url":"https://github.com/mheadd/node-open311" }
   ],

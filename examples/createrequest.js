@@ -2,7 +2,7 @@
  * Create a new service request.
  */
 var util = require('util');
-var Open311 = require('./lib/open311').Open311;
+var Open311 = require('../open311').Open311;
 
 //Options for the City of Baltimore (see http://311test.baltimorecity.gov/open311).
 var options = {
