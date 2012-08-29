@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<services>
+  <service>
+    <service_code>CSRREPIS</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>311, Online, Reported, Issues</keywords>
+    <group>311 - Call Center</group>
+    <service_name>311 Online Reported Issues</service_name>
+    <description>Please use this request type to report system issues, bugs and enhancement requests.  If follow-up is required to an existing service request or service request type please open a new request and reference the previous SR number.  Requests for service through this request type can be delayed for service.  Users experiencing problems with registered user accounts and password resets should email the 311 Online Support Team at 311onlinehelp@dc.gov.</description>
+  </service>
+  <service>
+    <service_code>S0003</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Abandoned, Vehicle, On, Private, Property</keywords>
+    <group>Prkg Svcs - Abandoned Vehicle Operations - Private</group>
+    <service_name>Abandoned Vehicle - On Private Property</service_name>
+    <description>Please use this service request to request the removal of a vehicle on private property.  Please note that some circumstances, including when vehicles have been reported stolen or vehicles are located on private property, specific legal processing is required before removal is possible. &lt;br&gt;&lt;br&gt;If the vehicle is determined to be dangerous by the Department of Public Works, it may be ticketed and towed immediately. Reports of abandoned vehicles are resolved within 13 days if the vehicle is located on public space or within 45 days from the date of verification if the vehicle is located on private property. A vehicle on private property cannot be legally removed before 45 days have passed since it was reported, without the property owner's permission.</description>
+  </service>
+  <service>
+    <service_code>S0000</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Abandoned, Vehicle, On, Public, Property</keywords>
+    <group>Prkg Svcs - Abandoned Vehicle Operations - Public</group>
+    <service_name>Abandoned Vehicle - On Public Property</service_name>
+    <description>Please use this service request to request the removal of vehicles on public property.  Please note that some under some circumstances, including when vehicles have been reported stolen, specific legal processing may be required before removal is possible.  &lt;br&gt;&lt;br&gt;If the vehicle is determined to be dangerous by the Department of Public Works, it may be  immediately ticketed and towed. Reports of abandoned vehicles are resolved within 13 days, if the vehicle is indeed located on public space. </description>
+  </service>
+  <service>
+    <service_code>S0011</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Alley, Cleaning</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Street Cleaning</group>
+    <service_name>Alley Cleaning</service_name>
+    <description>Please use this service request type to request that public alleys be cleaned.  Alley cleaning takes place during the spring, summer and fall and is performaed by crews that rotate throughout the city.  </description>
+  </service>
+  <service>
+    <service_code>S0016</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Alley, Repair</keywords>
+    <group>Siod</group>
+    <service_name>Alley Repair</service_name>
+    <description>Please use this service request type to investigate alley surfaces issues. Please identify the specific alley location, provide a description of problem (i.e. pothole, re-paving) and describe the type of existing alley surface (i.e. dirt, concrete, brick). It is also helpful to provide any additional information specific to the proposed repair.&lt;br&gt;&lt;br&gt;The scheduled response time for this request type, weather permitting, is as follows: &lt;br&gt;&lt;br&gt;Investigation: 10 business days, &lt;br&gt;Temporary repairs: 7-14 business days, &lt;br&gt;Alley re-paving: permanent restoration is scheduled annually, based on funding authority and contract availability.  &lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S05AL</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Alleylight, Investigation</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Alleylight Investigation</service_name>
+    <description>Please use this service request type to investigate alleylights repairs to. Please identify the location of the light and the type of pole (i.e. wood, metal) and describe the specific problem (i.e. light out, missing globe, light on continuously).&lt;br&gt;&lt;br&gt;The scheduled response time for this request type is as follows:&lt;br&gt;Investigation: 2 business days&lt;br&gt;Street or alley light bulb replacement: 5 business days&lt;br&gt;Street or alley photo cell replacement: 5 business days&lt;br&gt;Day burner: 5 business days&lt;br&gt;Globe replacement: 5 business days&lt;br&gt;Dim light because of ballast assembly: 5 business days&lt;br&gt;Defective fixtures: 30 business days&lt;br&gt;No current to light: 15-60 business days&lt;br&gt;Replace knockdown pole (new): 45 business days&lt;br&gt;Replace knockdown pole (in back log): 180 business days&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0196</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Autumn, Leaf, Collection</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Seasonal</group>
+    <service_name>Autumn Leaf Collection</service_name>
+    <description>Please use this service request type to request collection of leaves.  The autumn leaf collection program runs between November and January, and every neighborhood in the District and DPW collects leaves at least twice from residential neighborhoods by vacuuming the leaves that residents rake into their treebox spaces. &lt;br&gt;&lt;br&gt;DPW also collects bagged leaves from the treebox space or the alley in neighborhoods with rear trash and recycling collections.  For service outside the typical collection program period, please us the Yard Waste service request type.  </description>
+  </service>
+  <service>
+    <service_code>S0021</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Bicycle, Issues</keywords>
+    <group>Transportation Policy &amp; Planning Administration</group>
+    <service_name>Bicycle Issues</service_name>
+    <description>Please use this service request type to report bicycles issues including abandon bikes, bike ramps, bike lanes and bike racks. Abandoned bikes are those parked with rusted chains or missing parts. Once investigated, bicycles will be tagged with red/white stickers. The owner has 10 days to move or claim the bike before they are removed.</description>
+  </service>
+  <service>
+    <service_code>CHSASEPR</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Child, Safety, Seat, Program</keywords>
+    <group>Department of Transportation</group>
+    <service_name>Child Safety Seat Program</service_name>
+    <description>Please use this service request type to request more information about the District's Child Safety Seat Program. The District of Columbia Government is helping District residents to protect their families by providing infant, toddler, and booster seats to be purchased at reduced rates.&lt;br&gt;&lt;br&gt;For more information about this program, please visit the following webpage: &lt;br&gt;&lt;br&gt;http://ddot.dc.gov/DC/DDOT/On+Your+Street/Safety/Child+Safety+Seats&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>CONTREMO</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Container, Removal</keywords>
+    <group>Swm - Collections - Supercans</group>
+    <service_name>Container Removal</service_name>
+    <description>Please use this request type to request removal of supercans, trash container and recycling carts</description>
+  </service>
+  <service>
+    <service_code>S0081</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Curb, and, Gutter, Repair</keywords>
+    <group>Siod</group>
+    <service_name>Curb and Gutter Repair</service_name>
+    <description>Please use this service request type to investigate public space curbs and gutters issues. Please identify the specific location (i.e. address, intersection) and describe the type of repair that is suggested. This request type is investigated in approximately 10 business days, weather permitting. Permanent repairs may take longer depending on the nature of the damage..&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>DMV40</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Appeal</keywords>
+    <group>Adjudication Services</group>
+    <service_name>DMV - Appeal</service_name>
+    <description>Please use this request type to receive instructions on how to file an appeal to a ticket OR to determine the status of an appeal filed.</description>
+  </service>
+  <service>
+    <service_code>DMV66</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Copy, of, Ticket</keywords>
+    <group>Adjudication Services</group>
+    <service_name>DMV - Copy of Ticket</service_name>
+    <description>Please use this request type to request a copy of a traffic ticket already received.</description>
+  </service>
+  <service>
+    <service_code>DMV01</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Driver's, License/ID, Issues</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Driver's License/ID Issues</service_name>
+    <description>Please use this request type to report a Driver's License/ID Card that was piad for and not received, duplicate License/ID not received or any renewal issues.
+
+Also use this request type to request a handicapped placard or medical/eye report.</description>
+  </service>
+  <service>
+    <service_code>DMV43</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Hearings</keywords>
+    <group>Adjudication Services</group>
+    <service_name>DMV - Hearings</service_name>
+    <description>Please use this request type to either request a hearing date not received (already submitted via mail, the automated phone system or in person) or request an existing hearing be rescheduled.
+
+Note:  In order to reschedule an existing hearing it must be more than 7 days before the currently scheduled hearing.</description>
+  </service>
+  <service>
+    <service_code>DMINS001</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Inspection, Station, Issues</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Inspection Station Issues</service_name>
+    <description>Please use this service request type to report issues pertaining to vehicle inspections, inspection station operations and inspection fees.</description>
+  </service>
+  <service>
+    <service_code>ITISSUES</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Online, Processing, Problems</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Online Processing Problems</service_name>
+    <description>Service requests resulting from customer processing failures during customer online transactions.</description>
+  </service>
+  <service>
+    <service_code>DMV71</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Refunds, (License,, Registration,, Tags)</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Refunds (License, Registration, Tags)</service_name>
+    <description>Please use this request type to request a refund related to a Registration Fee, Surrendered Tags or License Fee Overpayment.For refunds due to ticket overpayment or dismissal please change to DMV - Refunds - Tickets</description>
+  </service>
+  <service>
+    <service_code>DMV51</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Refunds, Tickets</keywords>
+    <group>Adjudication Services</group>
+    <service_name>DMV - Refunds - Tickets</service_name>
+    <description>Please use this request type to report a refund due to a ticket overpayment or dismissal that has not been received yet.</description>
+  </service>
+  <service>
+    <service_code>DMV48</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Ticket, Payment, Dispute</keywords>
+    <group>Adjudication Services</group>
+    <service_name>DMV - Ticket Payment Dispute</service_name>
+    <description>Please use this request type regarding disputes you have with payment of a traffic ticket.</description>
+  </service>
+  <service>
+    <service_code>DMV19</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Vehicle, Registration, Issues</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Vehicle Registration Issues</service_name>
+    <description>Please use thhis request type for vehicle registration issues such as receipt of your paid registration, personalized tags and ROSA parking exemptions.</description>
+  </service>
+  <service>
+    <service_code>DMV31</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>DMV, Vehicle, Title, Issues</keywords>
+    <group>Driver Vehicle Services</group>
+    <service_name>DMV - Vehicle Title Issues</service_name>
+    <description>Please use this request type to submit any vehicle title issues to the DMV.</description>
+  </service>
+  <service>
+    <service_code>11</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Dead, Animal, Pickup</keywords>
+    <group>Swm - Collections - Dead Animal</group>
+    <service_name>Dead Animal Pickup</service_name>
+    <description>Please use this request type to rrequest the removal of dead animals on public property.</description>
+  </service>
+  <service>
+    <service_code>S0146</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Eviction</keywords>
+    <group>Swm - Collections - Eviction</group>
+    <service_name>Eviction</service_name>
+    <description>Please use this request type to request that items left more than 72 hours after an eviction be collected.  DPW will collect any items left on public space after that time. </description>
+  </service>
+  <service>
+    <service_code>FESPEDNU</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>FEMS, Community, Events</keywords>
+    <group>Fems - Special Events</group>
+    <service_name>FEMS - Community Events</service_name>
+    <description>The DC Department of Fire and EMS Community Outreach/Events section mission is to promote Fire Safety Awareness through partnerships with other district agencies, the community and local businesses by participating in various events throughout the city. Participation includes health screenings, fire station visits, the moon-bounce slide and distribution of fire safety materials. We require a minimum of 5 business days to process your request.  Please call 202-727-1614 for all Business or Foster Care Home Fire Inspection request.</description>
+  </service>
+  <service>
+    <service_code>FEMEDUPR</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>FEMS, Fire, Safety, Education</keywords>
+    <group>Fems</group>
+    <service_name>FEMS - Fire Safety Education</service_name>
+    <description>The DC Fire and EMS Department Fire Safety Education Section is committed to reducing the risk of incidents, injuries, fatalities, and property loss due to a fire emergency. Although it is vital that all citizens in the District of Columbia are taught fire safety, education is stressed for those who are the most vulnerable, Children and Senior Citizens. We provide fire evacuation planning assistance, fire safety education for the home, workplace, and schools and fire extinguisher training.  We require a minimum of 5 business days to process your request. </description>
+  </service>
+  <service>
+    <service_code>FESAADNU</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>FEMS, Smoke, Alarm, Application</keywords>
+    <group>Fems - Smoke Alarms</group>
+    <service_name>FEMS - Smoke Alarm Application</service_name>
+    <description>A'sia Sutton Smoke Alarm Program - ASSAP &lt;br&gt;&lt;br&gt;The Asia Sutton Smoke Alarm Giveaway and Installation Program is a DC Fire and EMS Department District-wide initiative to ensure that all District of Columbia homes have working smoke alarms. We are convinced that working smoke alarms are the single most important appliance in the home because they have been proven to save lives.&lt;br&gt;&lt;br&gt;The requirements for receiving a free smoke alarm are:&lt;br&gt;&lt;br&gt; You must live in the District of Columbia and show proof of residency.&lt;br&gt; You must be a homeowner and living in that home (not rental property).&lt;br&gt; The Department will install One Smoke Alarm Free.&lt;br&gt;&lt;br&gt;***** Please Note: The DC Fire &amp; EMS Department will make every effort to meet the requested date and time. The units assigned to install your smoke alarms will call 30 minutes to an hour prior to your requested time to insure that the resident is home. However, if the unit scheduled to install the alarm receives an emergency call, they must respond to the emergency first. This means that they may run late or not make the scheduled time. Once the emergency is over they will call to reschedule.****&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>GRAFF</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Graffiti, Removal</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Graffiti</group>
+    <service_name>Graffiti Removal</service_name>
+    <description>Please use this service request type to request that graffiti be removed from any surface.  A signed Graffiti Removal Release Form (Waiver) is required by DPW prior to the removal of graffiti from private property.  &lt;br&gt;&lt;br&gt;For more information about graffiti removal please visit the following webpage:&lt;br&gt;&lt;br&gt;http://dpw.dc.gov/DC/DPW/Services+on+Your+Block/Litter+and+Graffiti+Removal/Graffiti+Removal </description>
+  </service>
+  <service>
+    <service_code>KIT</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Graffiti, Removal, Paint, Voucher, Request</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Graffiti</group>
+    <service_name>Graffiti Removal - Paint Voucher Request</service_name>
+    <description>Please use this request type to request a paint voucher that will aid the requester in self removal of graffiti.</description>
+  </service>
+  <service>
+    <service_code>S0166</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Grass, Weeds, Mowing</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Seasonal</group>
+    <service_name>Grass &amp; Weeds Mowing</service_name>
+    <description>This service is performed during the months of April through November.    High grass and weeds will be cut around Bridges and Highways.only.</description>
+  </service>
+  <service>
+    <service_code>HMDCP</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>How's, My, Driving, Complaint</keywords>
+    <group>How Is My Driving Program</group>
+    <service_name>How's My Driving - Complaint</service_name>
+    <description>The mission of the "How am I Driving?" Campaign is to promote a safe driving culture for District government employees though reporting of unsafe driving practices and mitigating exposures of risk while ensuring the safety of motorists and District government employees.</description>
+  </service>
+  <service>
+    <service_code>HOMYDRCO</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>How's, My, Driving, Compliment</keywords>
+    <group>How Is My Driving Program</group>
+    <service_name>How's My Driving - Compliment</service_name>
+    <description>How's My Driving - Compliment</description>
+  </service>
+  <service>
+    <service_code>S0181</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Illegal, Dumping</keywords>
+    <group>Swm - Sweep - Dumping</group>
+    <service_name>Illegal Dumping</service_name>
+    <description>Illegal Dumping</description>
+  </service>
+  <service>
+    <service_code>S0185</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Illegal, Posters</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Posters</group>
+    <service_name>Illegal Posters</service_name>
+    <description>Please use this request to report posters that have been illegally or improperly placed.</description>
+  </service>
+  <service>
+    <service_code>INSECTS</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Insects</keywords>
+    <group>Department of Health</group>
+    <service_name>Insects</service_name>
+    <description>Insect reports on private property must be reported to a private company for abatement.</description>
+  </service>
+  <service>
+    <service_code>S0217</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Litter, Can, Collection</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Litter Can</group>
+    <service_name>Litter Can - Collection</service_name>
+    <description>Please use this request type to report a public trash can that is full/overflowing and needs to be emptied.</description>
+  </service>
+  <service>
+    <service_code>POWEOUTA</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Live, Wire, and, Power, Outages, Hurricane, Irene</keywords>
+    <group>311 - Call Center</group>
+    <service_name>Live Wire and Power Outages - Hurricane Irene</service_name>
+    <description>Emergency request to document outage calls or live wires down.</description>
+  </service>
+  <service>
+    <service_code>S0336</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Out, of, State, Parking, Violation, (ROSA)</keywords>
+    <group>Prkg Svcs - Parking Enforcement</group>
+    <service_name>Out of State Parking Violation (ROSA)</service_name>
+    <description>This type is designed to report out of state vehicles consistently parking overnight in the District of Columbia.</description>
+  </service>
+  <service>
+    <service_code>S0261</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Parking, Enforcement</keywords>
+    <group>Prkg Svcs - Parking Enforcement</group>
+    <service_name>Parking Enforcement</service_name>
+    <description>Citizens are advised that normal operating hours for the Parking Control Branch are generally from 6:00 am until 9:30 pm,   Monday through Friday.  Parking enforcement requests may not be completed within the established timeframe if requests are made at night, on the weekend, or government holidays, or during extreme weather such as hurricanes or snow emergencies.</description>
+  </service>
+  <service>
+    <service_code>S0276</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Parking, Meter, Repair</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Parking Meter Repair</service_name>
+    <description>Please use this request type to investigate parking meter related issues. Please indicate the specific incident location and if possible, the parking meter number. </description>
+  </service>
+  <service>
+    <service_code>PARKRECR</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Parks, and, Recreation</keywords>
+    <group>Department of Parks and Recreation</group>
+    <service_name>Parks and Recreation</service_name>
+    <description>Report problems and concerns to Parks and Recreation.</description>
+  </service>
+  <service>
+    <service_code>PVDNUSIT</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Placement, Violations</keywords>
+    <group>Tru - 311</group>
+    <service_name>Placement Violations</service_name>
+    <description>This Service Request is designed to report Group Home residents who may have violated their location assignments.  The use of this service request type is restricted to certified Group Homes.  Any requests that are submitted that do not fit the use criteria will be automatically closed.  Unauthorized use of this service request type may be investigated by the Metropolitan Police Department.  </description>
+  </service>
+  <service>
+    <service_code>S0301</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Pothole</keywords>
+    <group>Toa - Street &amp; Bridge Maintenance</group>
+    <service_name>Pothole</service_name>
+    <description>Please use this request type for pothole investigation. Pothole repair normally take approximately 3 business days (72 hours), weather permitting, for completion. </description>
+  </service>
+  <service>
+    <service_code>S0311</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Rat, Abatement</keywords>
+    <group>Department of Health</group>
+    <service_name>Rat Abatement</service_name>
+    <description>For requests where rat activity is observed, the Department of Health will continue baiting the area monthly until there is no evidence of rats.</description>
+  </service>
+  <service>
+    <service_code>S0323</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, Commercial, Only</keywords>
+    <group>Swm - Sweep - Recycling</group>
+    <service_name>Recycling - Commercial Only</service_name>
+    <description>Please use this request type to request recycling program information for your business OR to report a business that does not have a recycling program.
+
+NOTE: All businesses within the District of Columia are REQUIRED to have a recycling program.</description>
+  </service>
+  <service>
+    <service_code>S0322</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, Information, Request</keywords>
+    <group>Swm - Sweep - Recycling</group>
+    <service_name>Recycling - Information Request</service_name>
+    <description>Please use this request type to request recycling information be mailed to your home.</description>
+  </service>
+  <service>
+    <service_code>RECSCHPR</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, School, Program</keywords>
+    <group>Swm - Sweep - Recycling</group>
+    <service_name>Recycling - School Program</service_name>
+    <description>Please use this type to request a visit to a school to provide recycling information.</description>
+  </service>
+  <service>
+    <service_code>S0321</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, Collection, Missed</keywords>
+    <group>Swm - Collections - Recycling</group>
+    <service_name>Recycling Collection - Missed</service_name>
+    <description>Recycling Collection - Missed</description>
+  </service>
+  <service>
+    <service_code>S0316</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, Container, Delivery</keywords>
+    <group>Swm-Collections -ecycling Containers</group>
+    <service_name>Recycling Container Delivery</service_name>
+    <description>Use this type to request a recycling bin or cart.</description>
+  </service>
+  <service>
+    <service_code>RECCONRE</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Recycling, Container, Repair</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Street Cleaning</group>
+    <service_name>Recycling Container Repair</service_name>
+    <description>Please use this service request type to request that repairs be made to your Recycling Container. Repairs can be made to Recycling Container lids, lift bars and wheels.</description>
+  </service>
+  <service>
+    <service_code>S0331</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Resident, Parking, Permit</keywords>
+    <group>Department of Transportation</group>
+    <service_name>Resident Parking Permit</service_name>
+    <description>Please use this service request type for more information on the Resident Parking Permit (RPP) program. This program was initiated by the District to increase access to on-street parking for residents in their neighborhoods. &lt;br&gt;&lt;br&gt;For more information about the RPP program, please visit the following webpage:&lt;br&gt;&lt;br&gt;http://ddot.dc.gov/DC/DDOT/On+Your+Street/Traffic+Management/View+All/Residential+Permit+Parking&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0031</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Residential, Bulk, Collection</keywords>
+    <group>Swm - Collections - Bulk</group>
+    <service_name>Residential Bulk Collection</service_name>
+    <description>Please use this service request type to schedule pick up of up to 7 bulk items, such as household furniture, appliances,  water heaters, mattresses, bed frames and tree limbs.  Prohibited Items include hazardous materials, construction debris and tires.  These items should be disposed of at the Ft. Totten Transfer Station which is located at 4900 John F. McCormack Road, N.E.</description>
+  </service>
+  <service>
+    <service_code>RPP</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Residential, Parking, Permit, Violation</keywords>
+    <group>Prkg Svcs - Parking Enforcement</group>
+    <service_name>Residential Parking Permit Violation</service_name>
+    <description>Please use this type to report violations in areas where a permit is required to park on residential streets.  The Residential Parking Program (RPP) limits on-street parking to participating residents living on designated blocks, and parking is limited to two hours during the hours of operation for those vehicles without the appropriate zone RPP sticker.&lt;br&gt;&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>MARKINST</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Roadway, Marking, Installation</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Roadway Marking Installation</service_name>
+    <description>Please use this request type for roadway marking installation inquiries. &lt;br&gt;&lt;br&gt;*NOTE: Requests for "new" pavement markings require investigation, determination and rulemaking. This process may take 4-6 months, weather permitting, for completion. &lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>MARKMAIN</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Roadway, Marking, Maintenance</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Roadway Marking Maintenance</service_name>
+    <description>Please use this request type for roadway marking maintenance inquiries. </description>
+  </service>
+  <service>
+    <service_code>MARKMODI</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Roadway, Marking, Modification</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Roadway Marking Modification</service_name>
+    <description>Please use this request type for roadway marking modification inquiries. </description>
+  </service>
+  <service>
+    <service_code>MARKREMO</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Roadway, Marking, Removal</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Roadway Marking Removal</service_name>
+    <description>Please use this request type for roadway marking removal inquiries. </description>
+  </service>
+  <service>
+    <service_code>SAROTOSC</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Safe, Routes, to, School</keywords>
+    <group>Department of Transportation</group>
+    <service_name>Safe Routes to School</service_name>
+    <description>Please use this service request type for additional information on the Safe Routes to School Program. The DC Safe Routes to School Program works to: &lt;br&gt;&lt;br&gt;Improve safety for students who walk and bicycle to school&lt;br&gt;Encourage students and their parents to walk and bicycle to school&lt;br&gt;Boost student physical activity, reduce parents fuel consumption, reduce pollution and traffic congestion near schools.&lt;br&gt;&lt;br&gt;For more information about this program, please visit the following link: &lt;br&gt;&lt;br&gt;http://ddot.dc.gov/DC/DDOT/On+Your+Street/Bicycles+and+Pedestrians/View+All/Safe+Routes+to+School&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0346</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sanitation, Enforcement</keywords>
+    <group>Swm - Sweep - Enforcement</group>
+    <service_name>Sanitation Enforcement</service_name>
+    <description>Please use this request type to report improper disposal of trash or solid waste.  SWEEP inspectors will issue tickets for violations such as using street litter cans for trash that should go in your own trash can, improperly posting signs in the public space, or having trash/recycling containers in public space before 6:30 pm the day before your collection day or after 8 pm on the collection day. &lt;br&gt;&lt;br&gt;Business property owners may be cited for not having licensed trash and recycling haulers or not having frequent enough solid waste collections.&lt;br&gt;&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>SCCRGUPR</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>School, Crossing, Guard, Program</keywords>
+    <group>Department of Transportation</group>
+    <service_name>School Crossing Guard Program</service_name>
+    <description>Please use this service request type for additional information regarding the District's School Crossing Guard Program. DDOT's School Crossing Guard Programs purpose is to improve the safety for students who walk, bicycle, or take transit to school. A school crossing guards responsibility is to help students to safely cross hazardous intersections en route to school.&lt;br&gt;&lt;br&gt;You may also obtain additional information about this program by visiting the following link: &lt;br&gt;&lt;br&gt;http://ddot.dc.gov/DC/DDOT/On+Your+Street/Safety/School+Crossing+Guard&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0361</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sidewalk, Repair</keywords>
+    <group>Siod</group>
+    <service_name>Sidewalk Repair</service_name>
+    <description>Please use this service request type to for a sidewalk repair investigation. Please identify the specific issue location, describe the sidewalk problem and if possible, the type of sidewalk material (i.e. concrete, brick or other surface). Please also provide any information regarding the severity of the damage to the sidewalks surface (i.e. cracked or broken, missing bricks, tree roots pushing up through the sidewalk). &lt;br&gt;&lt;br&gt;The scheduled response time for sidewalk repair, weather permitting, is as follows: &lt;br&gt;&lt;br&gt;Investigation: 10 business days&lt;br&gt;Temporary (emergency) repairs: 15 business days&lt;br&gt;Permanent repairs depend upon the findings of the investigation and funding availability. Permanent restoration requires an extended resolution timeframe. &lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>SIGNMISS</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sign, Missing, Investigation</keywords>
+    <group>Toa - Trans Sys Mnt - Signs</group>
+    <service_name>Sign Missing Investigation</service_name>
+    <description>Please use this service request to report a missing street sign and pole. Please identify the specific location (i.e. address, intersection) and describe the specific message of the sign. </description>
+  </service>
+  <service>
+    <service_code>S0376</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sign, New, Investigation</keywords>
+    <group>Toa - Trans Sys Mnt - Signs</group>
+    <service_name>Sign New Investigation</service_name>
+    <description>Please use this service request for new street signs. Please identify the specific location (i.e. address, intersection) and describe the specific message of the sign and whether a signpost is also needed.&lt;br&gt;&lt;br&gt;Please be advised that requests for "new" traffic control signs require investigation, determination, rulemaking, and if approved, publication in the DC Register. This process could take 4-6 months for completion.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0287</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sign, Removal, Investigation</keywords>
+    <group>Toa - Trans Sys Mnt - Signs</group>
+    <service_name>Sign Removal Investigation</service_name>
+    <description>Please use this service request for the removal of signs. Please identify the specific location (i.e. address, intersection) and describe the specific message of the sign.&lt;br&gt;&lt;br&gt;Please be advised that this request type requires investigation, determination, rulemaking, and if approved, publication in the DC Register. Sign Removal request fulfillment could take between 4-6 months.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0286</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Sign, Replacement</keywords>
+    <group>Toa - Trans Sys Mnt - Signs</group>
+    <service_name>Sign Replacement</service_name>
+    <description>Please use this service request to request the replacement of missing or damaged street signs.  You will need to identify the specific location (i.e. address, intersection) and describe the specific message of the sign and whether a signpost is also needed.&lt;br&gt;&lt;br&gt;The scheduled response times for sign replacement requests is as follows:&lt;br&gt;&lt;br&gt;STOP sign replacement: 24 hours&lt;br&gt;DO NOT ENTER sign replacement: 24 hours&lt;br&gt;Traffic control sign replacement: 35 days&lt;br&gt;Parking sign replacement: 60 days&lt;br&gt;Street name sign replacement: 45 days&lt;br&gt;Handicap sign replacement: 45 days&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>SRC01</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Snow/Ice, Removal</keywords>
+    <group>Snow</group>
+    <service_name>Snow/Ice Removal</service_name>
+    <description>Please use this service request type to request the removal of snow and treatment of ice on streets.  As in other jurisdictions, public safety determines the priority for snow removal in the District. Clearing and salting efforts are focused first on major roads, commuter thoroughfares and designated Snow Emergency Routes. &lt;br&gt;&lt;br&gt;The District's Snow Team is committed to faster completion of plowing and salting along major roads and residential streets, however, residents are asked to please be patient and allow sufficient time for snow operations to be implemented.</description>
+  </service>
+  <service>
+    <service_code>S0391</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Street, Cleaning</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Street Cleaning</group>
+    <service_name>Street Cleaning</service_name>
+    <description>Please use this request type to request cleaning of a public roadway.  DPW provides street cleaning to ensure clean and safe District streets and proper removal of litter and/or bulk items.  &lt;br&gt;&lt;br&gt;Please use the Street Sweeping service type to request a mechanical sweeping of the street.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0406</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Street, Repair</keywords>
+    <group>Siod</group>
+    <service_name>Street Repair</service_name>
+    <description>Please use this service request type to investigate street surface issues. Please provide the specific location (i.e. address, intersection) and describe the specific repair problem (i.e. uneven pavement, numerous potholes). Also if possible, provide any information regarding the street surfaces paving material (i.e. concrete, asphalt, or brick). &lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>SO392</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Street, Sweeping</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Street Cleaning</group>
+    <service_name>Street Sweeping</service_name>
+    <description>Please use this request type to report issues related to automated street sweeping along regularly scheduled sweep routes.  DPW recently expanded its street sweeping program to encompass more residential neighborhoods and cleans residential and arterial streets using mechanical sweepers of various sizes.  This program operates in densely-populated neighborhoods with high-volume pedestrian traffic.  &lt;br&gt;&lt;br&gt;Mechanical residential street sweeping is suspended during the winter because the sweepers emit a fine spray of water than can freeze and cause pedestrial and vehicular accidents.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S05SL</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Streetlight, Repair, Investigation</keywords>
+    <group>Transportation Operations Administration</group>
+    <service_name>Streetlight Repair Investigation</service_name>
+    <description>Please use this service request type to investigate streetlight issues. Please provide the location of the light, the type of pole (i.e. wood, metal) and describe the specific problem (i.e. light out, missing globe, light on continuously).&lt;br&gt;&lt;br&gt;The scheduled response time for this request type is as follows:&lt;br&gt;&lt;br&gt;Investigation: 2 days&lt;br&gt;Street or alley light bulb replacement: 5 business days&lt;br&gt;Street or alley photo cell replacement: 5 business days&lt;br&gt;Day burner: 5 business days&lt;br&gt;Globe replacement: 5 business days&lt;br&gt;Dim light because of ballast assembly: 5 business days&lt;br&gt;Defective fixtures: 30 business days&lt;br&gt;No current to light: 15-60 business days&lt;br&gt;Replace knockdown pole (new): 45 business days&lt;br&gt;Replace knockdown pole (in back log): 180 business days&lt;br&gt;&lt;br&gt;After investigation and approval, it may take approximately 4-6 months for completion.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0423</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Supercan, Repair</keywords>
+    <group>Swm - Collections - Supercans</group>
+    <service_name>Supercan - Repair</service_name>
+    <description>Please use this service request type to request that repairs be made to your Supercan.  Repairs can be made to Supercan lids, lift bars and wheels.</description>
+  </service>
+  <service>
+    <service_code>S0422</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Supercan, Request</keywords>
+    <group>Swm - Collections - Supercans</group>
+    <service_name>Supercan Request</service_name>
+    <description>Please use this request type to request an new Supercan.  This request type should be used if you have once per week trash collection, are a new resident in your home or if your supercan was stolen.    New resident replacement Supercans cost $62.50.  Senior Citizens are offered a discounted rate of $32.00.  If your Supercan has been stolen, the replacement cost is $20, with a copy of the police report.  Checks should be made payable to the DC Treasurer and mailed to 2750 South Capitol Street, SE, Washington, DC  20032.  Please be sure to include your service request number on the check.&lt;br&gt;&lt;br&gt;Residences with twice per week collection should use the Trash Container service reqeust type.  Residences with 4 units or more are considered commercial and trash service must be provided by the landlord or HOA.</description>
+  </service>
+  <service>
+    <service_code>S0216</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Swm, Street, Alley, Cleaning</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Litter Can</group>
+    <service_name>Swm - Street &amp; Alley Cleaning</service_name>
+    <description>Please use this request type to request either installation, removal or repair of a public litter can in public/commercial areas or parks.</description>
+  </service>
+  <service>
+    <service_code>SPSTDAMA</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Traffic, Calming, Investigation</keywords>
+    <group>Department of Transportation</group>
+    <service_name>Traffic Calming Investigation</service_name>
+    <description>This service request type pertains to pedestrian safety, speed study requests (speed humps/bumps) and any other type of traffic calming measures. For information regarding traffic calming measures, view the DDOT website at the following address: http://ddot.dc.gov/DC/DDOT/On+Your+Street/Bicycles+and+Pedestrians.</description>
+  </service>
+  <service>
+    <service_code>SIGTRAMA</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Traffic, Signals, Investigation</keywords>
+    <group>Toa - Trans Sys Mnt - Signals</group>
+    <service_name>Traffic Signals Investigation</service_name>
+    <description>Please use this service request type to investigation traffic signal issues. Please provide the specific location of traffic signal (i.e. NE corner, SW corner, etc.) and describe the specific problem, (i.e. flashing, all-out, red out, pedestrian signal out, etc.). &lt;br&gt;&lt;br&gt;The scheduled response time for traffic signal maintenance is as follows:&lt;br&gt;&lt;br&gt;All signals out: 6 hours&lt;br&gt;Twisted or turned head: 6 hours&lt;br&gt;Bulb replacement: 6 hours&lt;br&gt;Pedestrian signal out: 6 hours&lt;br&gt;School flasher inoperative: 30 days&lt;br&gt;Signal timing change: 30 days&lt;br&gt;&lt;br&gt;Note: Requests for "new" traffic signals require an investigation determination, rulemaking and publication in the DC Register (if approved). Funding identification, design, and construction are also necessary. Please note that if this request is approved, it could take up to 24 months for completion.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0441</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Trash, Collection, Missed</keywords>
+    <group>Swm - Collections - Trash</group>
+    <service_name>Trash Collection - Missed</service_name>
+    <description>Please use this service request type to report missed regular trash collection.   If routine trash collection falls on a holiday, the service will be delayed by 1 day.  </description>
+  </service>
+  <service>
+    <service_code>S0451</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Trash, Container, Delivery</keywords>
+    <group>Swm - Collections - Trash</group>
+    <service_name>Trash Container - Delivery</service_name>
+    <description>Please use this request type to order a new/replacement trash container.  This request type may be used by  individuals who have twice a week collection.  There is a fee of $45 for each container and payments should be made payable to the DC Treasurer and mailed to 2750 South Capitol Street, SE, Washington, DC  20032.  Please be sure to include your service request number on the check.&lt;br&gt;&lt;br&gt;Households that have once per week collection should make a request for a Supercan.  Residences with 4 units or more are considered commercial and trash service must be provided by the landlord or HOA.</description>
+  </service>
+  <service>
+    <service_code>TRACO001</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Trash, Container, Repair</keywords>
+    <group>Swm - Str &amp; Alley Cleaning - Street Cleaning</group>
+    <service_name>Trash Container Repair</service_name>
+    <description>Please use this service request type to request that repairs be made to your Trash Container. Repairs can be made to trash container lids, lift bars and wheels</description>
+  </service>
+  <service>
+    <service_code>S0457</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Tree, Inspection</keywords>
+    <group>Urban Forrestry</group>
+    <service_name>Tree Inspection</service_name>
+    <description>Please use this service type for a tree inspection. DDOT's Urban Forestry Administration (UFA) primary mission is to maintain the city's street trees. Street trees are those located between the curb and sidewalk. UFA also clears fallen trees and limbs from roadways and sidewalks, and moves or removes fallen trees or limbs that impede vehicular passage through alleys.&lt;br&gt;&lt;br&gt;If there is no immediate threat to individuals, vehicles parked in a public right-of-way, or the flow of traffic through streets and alleys, trees will be inspected within 30 days of request.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S04TP</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Tree, Planting</keywords>
+    <group>Urban Forrestry</group>
+    <service_name>Tree Planting </service_name>
+    <description>Please use this service type to request a public space tree be pruned. DDOT's Urban Forestry Administration (UFA) prunes the District's street trees to maintain the trees overall health, form, and safety for the area around the tree. Trees are also pruned to give clearance over sidewalks and roadways, followed by minor roadways, alleys (to allow passage for sanitation and emergency vehicles), and pedestrian walkways. DDOTs UFA will make the final determination regarding the viability of pruning a tree.</description>
+  </service>
+  <service>
+    <service_code>PRUNING</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Tree, Pruning</keywords>
+    <group>Urban Forrestry</group>
+    <service_name>Tree Pruning</service_name>
+    <description>Please use this service type to request a public space tree be pruned. DDOT's Urban Forestry Administration (UFA) prunes the District's street trees to maintain the trees overall health, form, and safety for the area around the tree. Trees are also pruned to give clearance over sidewalks and roadways, followed by minor roadways, alleys (to allow passage for sanitation and emergency vehicles), and pedestrian walkways. DDOTs UFA will make the final determination regarding the viability of pruning a tree.</description>
+  </service>
+  <service>
+    <service_code>S0459</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Tree, Removal</keywords>
+    <group>Urban Forrestry</group>
+    <service_name>Tree Removal</service_name>
+    <description>Please use this service type to request the removal of a dead or badly damaged tree from public space. DDOT's Urban Forestry Administration (UFA) removes trees that are dead, dying/diseased, or unsafe (those that have structural and/or dangerous root defects which cannot be corrected). Once a tree is inspected by an arborist, the arborist will determine what measures should be taken in regard to the tree in question. &lt;br&gt;&lt;br&gt;In the event of an emergency, such as broken or hanging limbs, or a tree is down blocking the flow of traffic or obscuring the view of a stop sign or other traffic sign, the DDOT's Urban Forestry Division will respond to mitigate the issue.&lt;br&gt;</description>
+  </service>
+  <service>
+    <service_code>S0466</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Utility, Repair, Investigation</keywords>
+    <group>Siod</group>
+    <service_name>Utility Repair Investigation</service_name>
+    <description>Please use this service request type to report and/or determine the status of utility service projects related to cuts made on roadways.</description>
+  </service>
+  <service>
+    <service_code>S0471</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Vacant, Lot</keywords>
+    <group>Swm - Sweep - Enforcement</group>
+    <service_name>Vacant Lot</service_name>
+    <description>Please use this service request type to request trash removal and/or grass cutting on lots without structures on them.  </description>
+  </service>
+  <service>
+    <service_code>S0476</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>Yard, Waste</keywords>
+    <group>Swm - Collections - Yard Waste</group>
+    <service_name>Yard Waste</service_name>
+    <description>Please use this service request type to request the collection of up to 7 bags of yard waste that weigh less than 65 pounds each.  If your trash is collected twice a week, your yard waste will be collected on your second trash collection day.</description>
+  </service>
+  <service>
+    <service_code>DMETTASI</service_code>
+    <metadata>true</metadata>
+    <type>realtime</type>
+    <keywords>eTIMS, Ticket, Alert, Services, Issues</keywords>
+    <group>Adjudication Services</group>
+    <service_name>eTIMS Ticket Alert Services Issues</service_name>
+    <description>eTIMS Ticket Alert Services Issues</description>
+  </service>
+</services>

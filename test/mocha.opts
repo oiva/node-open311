@@ -1,4 +1,4 @@
---require should
+--require chai
 --require sinon
 --reporter spec
 --ui bdd

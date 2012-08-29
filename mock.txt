@@ -1,0 +1,7 @@
+
+
+  Open311()
+    new Open311()
+      ◦ should attach options to `this`: [2K[0G      ✓ should attach options to `this` 
+    ._get()
+      ◦ should should allow the `params` argument to be optional: 

@@ -10,6 +10,9 @@
 var http = require('http');
 var https = require('https');
 var request = require('request');
+var qs = require('querystring');
+var __ = require('lodash');
+var xmlParser = require('xml2json');
 
 /**
  * Class constructor
@@ -124,6 +127,43 @@ Open311.prototype.getServiceRequest = function(format, service_request_id, callb
 			+ format + '?jurisdiction_id=' + this.jurisdiction;
 	this.makeAPICall('GET', path, callback);
 };
+
+
+
+/**
+ * Utility method for making a GET request to the Open311 API. 
+ * @param path e.g. 'services'
+ * @param params (optional) url parameters
+ * @param callback Function to be executed on response from API.
+ */
+Open311.prototype._get = function(path, params, callback) {
+	var self = this;
+	// make params optional
+	if (__.isFunction(params)) {
+		callback = params;
+		params = {};
+	}
+
+	// make sure the jurisdiction_id is set
+	if (this.jurisdiction) {
+		params.jurisdiction_id = params.jurisdiction_id || this.jurisdiction;
+	}
+
+	// make our GET request
+	request.get({
+		url: this.endpoint + path + '.' + this.format, 
+		qs: params
+	}, function (err, res, body) {
+    if (res.statusCode !== 200) {
+			callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
+			return;
+		}
+		if (self.format === 'xml') {
+			body = xmlParser.toJson(body, {object: true});
+		}
+		callback(false, body);
+  });
+}
 
 /**
  * Utility method for making an HTTP request to the Open311 API. 
