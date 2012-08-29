@@ -9,19 +9,21 @@
 // Include required Node.js modules.
 var http = require('http');
 var https = require('https');
+var request = require('request');
 
 /**
  * Class constructor
  * @constructor
  * @param options Open311 settings.
  */
-Open311 = function(options) {
+var Open311 = module.exports = function(options) {
 	this.endpoint = options.endpoint;
-	this.service_path = options.service_path;
-	this.jurisdiction_id = options.jurisdiction_id;
-	this.secure = options.secure || false;
-	this.port = options.port || 80;
-	this.responseBody = "";
+	//this.service_path = options.service_path;
+	this.jurisdiction = options.jurisdiction;
+	this.format = options.format || 'json';
+	//this.secure = options.secure || false;
+	//this.port = options.port || 80;
+	//this.responseBody = "";
 };
 
 /**
@@ -43,7 +45,7 @@ Open311.prototype.serviceDiscovery = function(format, callback) {
  */
 Open311.prototype.getServiceList = function(format, callback) {
 	var path = this.service_path + 'services.' + format + '?jurisdiction_id='
-			+ this.jurisdiction_id;
+			+ this.jurisdiction;
 	this.makeAPICall('GET', path, callback);
 };
 
@@ -56,7 +58,7 @@ Open311.prototype.getServiceList = function(format, callback) {
  */
 Open311.prototype.getServiceDefinition = function(format, service_code, callback) {
 	var path = this.service_path + 'services/' + service_code + '.' + format
-			+ '?jurisdiction_id=' + this.jurisdiction_id;
+			+ '?jurisdiction_id=' + this.jurisdiction;
 	this.makeAPICall('GET', path, callback);
 };
 
@@ -71,7 +73,7 @@ Open311.prototype.getServiceDefinition = function(format, service_code, callback
  */
 Open311.prototype.postSericeRequest = function(format, service_code, api_key, parameters, callback) {
 	var path = this.service_path + 'requests/' + format + '?api_key=' + api_key
-			+ '&jurisdiction_id=' + this.jurisdiction_id;
+			+ '&jurisdiction_id=' + this.jurisdiction;
 	var params = '';
 	for (item in parameters) {
 		params += '&' + item + '=' + encodeURI(parameters[item]);
@@ -89,7 +91,7 @@ Open311.prototype.postSericeRequest = function(format, service_code, api_key, pa
  */
 Open311.prototype.getRequestIdFromToken = function(format, token_id, callback) {
 	var path = this.service_path + 'tokens/' + token_ + id + '.' + format
-			+ '?jurisdiction_id=' + this.jurisdiction_id;
+			+ '?jurisdiction_id=' + this.jurisdiction;
 	this.makeAPICall('GET', path, callback);
 };
 
@@ -101,7 +103,7 @@ Open311.prototype.getRequestIdFromToken = function(format, token_id, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
  */
 Open311.prototype.getServiceRequestList = function(format, parameters, callback) {
-	var path = this.service_path + 'requests/' + format + '?jurisdiction_id=' + this.jurisdiction_id;
+	var path = this.service_path + 'requests/' + format + '?jurisdiction_id=' + this.jurisdiction;
 	var params = '';
 	for (item in parameters) {
 		params += '&' + item + '=' + encodeURI(parameters[item]);
@@ -119,7 +121,7 @@ Open311.prototype.getServiceRequestList = function(format, parameters, callback)
  */
 Open311.prototype.getServiceRequest = function(format, service_request_id, callback) {
 	var path = this.service_path + 'requests/' + service_request_id + '.'
-			+ format + '?jurisdiction_id=' + this.jurisdiction_id;
+			+ format + '?jurisdiction_id=' + this.jurisdiction;
 	this.makeAPICall('GET', path, callback);
 };
 
@@ -177,5 +179,3 @@ Open311.prototype.makeAPICall = function(method, path, callback) {
 	}
 
 };
-
-exports.Open311 = Open311;

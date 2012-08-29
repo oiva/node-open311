@@ -1,2 +1,10 @@
-.settings*
-.project
+# osx noise
+.DS_Store
+profile
+
+# node
+node_modules
+npm-debug.log
+
+#foreman
+.env

@@ -9,6 +9,17 @@
     { "type":"git", "url":"https://github.com/mheadd/node-open311" }
   ],
   "engines": {
-    "node": "> 0.4.1"
+    "node": "0.8.x"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {
+    "request": "~2.11.0"
+  },
+  "devDependencies": {
+    "mocha":  "~1.4.1",
+    "should": "~1.1.0",
+    "sinon": "~1.4.2"
   }
 }
