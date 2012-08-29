@@ -20,13 +20,13 @@ var xmlParser = require('xml2json');
  * @param options Open311 settings.
  */
 var Open311 = module.exports = function(options) {
-	this.endpoint = options.endpoint;
-	//this.service_path = options.service_path;
-	this.jurisdiction = options.jurisdiction;
-	this.format = options.format || 'json';
-	//this.secure = options.secure || false;
-	//this.port = options.port || 80;
-	//this.responseBody = "";
+  this.endpoint = options.endpoint;
+  //this.service_path = options.service_path;
+  this.jurisdiction = options.jurisdiction;
+  this.format = options.format || 'json';
+  //this.secure = options.secure || false;
+  //this.port = options.port || 80;
+  //this.responseBody = "";
 };
 
 /**
@@ -36,8 +36,8 @@ var Open311 = module.exports = function(options) {
  * @see http://wiki.open311.org/Service_Discovery
  */
 Open311.prototype.serviceDiscovery = function(format, callback) {
-	var path = this.service_path + 'discovery.' + format;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'discovery.' + format;
+  this.makeAPICall('GET', path, callback);
 };
 
 /**
@@ -47,9 +47,9 @@ Open311.prototype.serviceDiscovery = function(format, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_List
  */
 Open311.prototype.getServiceList = function(format, callback) {
-	var path = this.service_path + 'services.' + format + '?jurisdiction_id='
-			+ this.jurisdiction;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'services.' + format + '?jurisdiction_id='
+      + this.jurisdiction;
+  this.makeAPICall('GET', path, callback);
 };
 
 /**
@@ -60,9 +60,9 @@ Open311.prototype.getServiceList = function(format, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Definition
  */
 Open311.prototype.getServiceDefinition = function(format, service_code, callback) {
-	var path = this.service_path + 'services/' + service_code + '.' + format
-			+ '?jurisdiction_id=' + this.jurisdiction;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'services/' + service_code + '.' + format
+      + '?jurisdiction_id=' + this.jurisdiction;
+  this.makeAPICall('GET', path, callback);
 };
 
 /**
@@ -75,14 +75,14 @@ Open311.prototype.getServiceDefinition = function(format, service_code, callback
  * @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
  */
 Open311.prototype.postSericeRequest = function(format, service_code, api_key, parameters, callback) {
-	var path = this.service_path + 'requests/' + format + '?api_key=' + api_key
-			+ '&jurisdiction_id=' + this.jurisdiction;
-	var params = '';
-	for (item in parameters) {
-		params += '&' + item + '=' + encodeURI(parameters[item]);
-	}
-	path = path + params;
-	this.makeAPICall('POST', path, callback);
+  var path = this.service_path + 'requests/' + format + '?api_key=' + api_key
+      + '&jurisdiction_id=' + this.jurisdiction;
+  var params = '';
+  for (item in parameters) {
+    params += '&' + item + '=' + encodeURI(parameters[item]);
+  }
+  path = path + params;
+  this.makeAPICall('POST', path, callback);
 };
 
 /**
@@ -93,9 +93,9 @@ Open311.prototype.postSericeRequest = function(format, service_code, api_key, pa
  * @see http://wiki.open311.org/GeoReport_v2#GET_request_id_from_a_token
  */
 Open311.prototype.getRequestIdFromToken = function(format, token_id, callback) {
-	var path = this.service_path + 'tokens/' + token_ + id + '.' + format
-			+ '?jurisdiction_id=' + this.jurisdiction;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'tokens/' + token_ + id + '.' + format
+      + '?jurisdiction_id=' + this.jurisdiction;
+  this.makeAPICall('GET', path, callback);
 };
 
 /**
@@ -106,13 +106,13 @@ Open311.prototype.getRequestIdFromToken = function(format, token_id, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
  */
 Open311.prototype.getServiceRequestList = function(format, parameters, callback) {
-	var path = this.service_path + 'requests/' + format + '?jurisdiction_id=' + this.jurisdiction;
-	var params = '';
-	for (item in parameters) {
-		params += '&' + item + '=' + encodeURI(parameters[item]);
-	}
-	path = path + params;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'requests/' + format + '?jurisdiction_id=' + this.jurisdiction;
+  var params = '';
+  for (item in parameters) {
+    params += '&' + item + '=' + encodeURI(parameters[item]);
+  }
+  path = path + params;
+  this.makeAPICall('GET', path, callback);
 };
 
 /**
@@ -123,9 +123,9 @@ Open311.prototype.getServiceRequestList = function(format, parameters, callback)
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Request
  */
 Open311.prototype.getServiceRequest = function(format, service_request_id, callback) {
-	var path = this.service_path + 'requests/' + service_request_id + '.'
-			+ format + '?jurisdiction_id=' + this.jurisdiction;
-	this.makeAPICall('GET', path, callback);
+  var path = this.service_path + 'requests/' + service_request_id + '.'
+      + format + '?jurisdiction_id=' + this.jurisdiction;
+  this.makeAPICall('GET', path, callback);
 };
 
 
@@ -137,31 +137,31 @@ Open311.prototype.getServiceRequest = function(format, service_request_id, callb
  * @param callback Function to be executed on response from API.
  */
 Open311.prototype._get = function(path, params, callback) {
-	var self = this;
-	// make params optional
-	if (__.isFunction(params)) {
-		callback = params;
-		params = {};
-	}
+  var self = this;
+  // make params optional
+  if (__.isFunction(params)) {
+    callback = params;
+    params = {};
+  }
 
-	// make sure the jurisdiction_id is set
-	if (this.jurisdiction) {
-		params.jurisdiction_id = params.jurisdiction_id || this.jurisdiction;
-	}
+  // make sure the jurisdiction_id is set
+  if (this.jurisdiction) {
+    params.jurisdiction_id = params.jurisdiction_id || this.jurisdiction;
+  }
 
-	// make our GET request
-	request.get({
-		url: this.endpoint + path + '.' + this.format, 
-		qs: params
-	}, function (err, res, body) {
+  // make our GET request
+  request.get({
+    url: this.endpoint + path + '.' + this.format, 
+    qs: params
+  }, function (err, res, body) {
     if (res.statusCode !== 200) {
-			callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
-			return;
-		}
-		if (self.format === 'xml') {
-			body = xmlParser.toJson(body, {object: true});
-		}
-		callback(false, body);
+      callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
+      return;
+    }
+    if (self.format === 'xml') {
+      body = xmlParser.toJson(body, {object: true});
+    }
+    callback(false, body);
   });
 }
 
@@ -173,49 +173,49 @@ Open311.prototype._get = function(path, params, callback) {
  */
 Open311.prototype.makeAPICall = function(method, path, callback) {
 
-	var self = this;
+  var self = this;
 
-	var content_type = method == 'POST' ? 'application/x-www-form-urlencoded' : 'text/plain';
-	var request_headers = {
-		'Content-Type' : content_type
-	};
-	var options = {
-		host : this.endpoint,
-		port : this.port,
-		path : path,
-		method : method,
-		headers : request_headers
-	};
-	
-	// Determine if SSL is used.
-	if (this.secure) {
-		var open311 = https.request(options, function(response){
-			getResponse(response);
-		});
-		open311.end();
-	}
+  var content_type = method == 'POST' ? 'application/x-www-form-urlencoded' : 'text/plain';
+  var request_headers = {
+    'Content-Type' : content_type
+  };
+  var options = {
+    host : this.endpoint,
+    port : this.port,
+    path : path,
+    method : method,
+    headers : request_headers
+  };
+  
+  // Determine if SSL is used.
+  if (this.secure) {
+    var open311 = https.request(options, function(response){
+      getResponse(response);
+    });
+    open311.end();
+  }
 
-	else {
-		var open311 = http.request(options, function(response){
-			getResponse(response);
-		});
-		open311.end();
-	}
-	
-	// Simple utilty function to get HTTP response.
-	function getResponse(response) {
-		if (response.statusCode == 404) {
-			callback(true, 'There was an error connecting to the Open311 API: ' + response.statusCode);
-		}
-		else {
-			response.setEncoding('utf8');
-			response.on('data', function(chunk) {
-				self.responseBody += chunk;
-			});
-			response.on('end', function() {
-				callback(false, self.responseBody);
-			});	
-		}
-	}
+  else {
+    var open311 = http.request(options, function(response){
+      getResponse(response);
+    });
+    open311.end();
+  }
+  
+  // Simple utilty function to get HTTP response.
+  function getResponse(response) {
+    if (response.statusCode == 404) {
+      callback(true, 'There was an error connecting to the Open311 API: ' + response.statusCode);
+    }
+    else {
+      response.setEncoding('utf8');
+      response.on('data', function(chunk) {
+        self.responseBody += chunk;
+      });
+      response.on('end', function() {
+        callback(false, self.responseBody);
+      }); 
+    }
+  }
 
 };
