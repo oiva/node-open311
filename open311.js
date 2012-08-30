@@ -42,14 +42,25 @@ Open311.prototype.serviceDiscovery = function(format, callback) {
 
 /**
  * Get a list of service requests.
- * @param format json|xml
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_List
  */
-Open311.prototype.getServiceList = function(format, callback) {
-  var path = this.service_path + 'services.' + format + '?jurisdiction_id='
-      + this.jurisdiction;
-  this.makeAPICall('GET', path, callback);
+Open311.prototype.serviceList = function(callback) {
+  var self = this, data;
+  this._get('services', function(err, body) {
+    if (err) {
+      callback (err, body);
+      return;
+    }
+
+    if (self.format === 'xml') {
+      data = xmlParser.toJson(body, {object: true}).services.service;
+    }
+    else {
+      data = JSON.parse(body);
+    }
+    callback(null, data);
+  });
 };
 
 /**
@@ -59,10 +70,32 @@ Open311.prototype.getServiceList = function(format, callback) {
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Definition
  */
-Open311.prototype.getServiceDefinition = function(format, service_code, callback) {
-  var path = this.service_path + 'services/' + service_code + '.' + format
-      + '?jurisdiction_id=' + this.jurisdiction;
-  this.makeAPICall('GET', path, callback);
+Open311.prototype.serviceDefinition = function(service_code, callback) {
+  var self = this, data, i;
+  this._get('services/' + service_code, function(err, body) {
+    if (err) {
+      callback (err, body);
+      return;
+    }
+
+    if (self.format === 'xml') {
+      data = xmlParser.toJson(body, {object: true}).service_definition;
+      data.attributes = data.attributes.attribute;
+      for (i = 0; i < data.attributes.length; i++) {
+        if (data.attributes[i].values.value) {
+          data.attributes[i].values = data.attributes[i].values.value;
+        }
+        else {
+          data.attributes[i].values = null;
+        }
+      }
+    }
+    else {
+      data = JSON.parse(body);
+    }
+
+    callback(null, data)
+  });
 };
 
 /**
@@ -157,9 +190,6 @@ Open311.prototype._get = function(path, params, callback) {
     if (res.statusCode !== 200) {
       callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
       return;
-    }
-    if (self.format === 'xml') {
-      body = xmlParser.toJson(body, {object: true});
     }
     callback(false, body);
   });

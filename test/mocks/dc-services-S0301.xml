@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service_definition>
+  <service_code>S0301</service_code>
+  <attributes>
+    <attribute>
+      <variable>false</variable>
+      <code>DSITR001</code>
+      <datatype>text</datatype>
+      <required>false</required>
+      <datatype_description>Character</datatype_description>
+      <order>9</order>
+      <description>DDOT's standard is to repair potholes within 3 busniness days (72 hours). Call the Mayor's Call Center at 311if the has not been repaired by the specified time of completion. Reference your service request number</description>
+      <values />
+    </attribute>
+    <attribute>
+      <variable>true</variable>
+      <code>ISITHAZA</code>
+      <datatype>singlevaluelist</datatype>
+      <required>false</required>
+      <datatype_description>Optional List of Values</datatype_description>
+      <order>3</order>
+      <description>Is it hazardous?</description>
+      <values>
+        <value>
+          <key>NO001</key>
+          <name>No</name>
+        </value>
+        <value>
+          <key>UNKNOWN</key>
+          <name>Unknown</name>
+        </value>
+        <value>
+          <key>YES001</key>
+          <name>Yes</name>
+        </value>
+      </values>
+    </attribute>
+    <attribute>
+      <variable>true</variable>
+      <code>WHISPOLO</code>
+      <datatype>singlevaluelist</datatype>
+      <required>true</required>
+      <datatype_description>Optional List of Values</datatype_description>
+      <order>1</order>
+      <description>Where is the pothole located?</description>
+      <values>
+        <value>
+          <key>ALLEY002</key>
+          <name>Alley</name>
+        </value>
+        <value>
+          <key>STREE001</key>
+          <name>Street</name>
+        </value>
+      </values>
+    </attribute>
+    <attribute>
+      <variable>false</variable>
+      <code>NOTE001</code>
+      <datatype>text</datatype>
+      <required>false</required>
+      <datatype_description>Character</datatype_description>
+      <order>8</order>
+      <description>*Note:</description>
+      <values />
+    </attribute>
+    <attribute>
+      <variable>true</variable>
+      <code>WATHPRDA</code>
+      <datatype>singlevaluelist</datatype>
+      <required>false</required>
+      <datatype_description>Boolean Type Yes/No</datatype_description>
+      <order>4</order>
+      <description>Was there property damage?</description>
+      <values>
+        <value>
+          <key>FALSE</key>
+          <name>No</name>
+        </value>
+        <value>
+          <key>TRUE</key>
+          <name>Yes</name>
+        </value>
+      </values>
+    </attribute>
+    <attribute>
+      <variable>true</variable>
+      <code>WHMAISAL</code>
+      <datatype>singlevaluelist</datatype>
+      <required>false</required>
+      <datatype_description>Optional List of Values</datatype_description>
+      <order>2</order>
+      <description>If possible, please identify the type of material is it?</description>
+      <values>
+        <value>
+          <key>ASPHALT</key>
+          <name>Asphalt</name>
+        </value>
+        <value>
+          <key>BRICK</key>
+          <name>Brick</name>
+        </value>
+        <value>
+          <key>COBBLEST</key>
+          <name>Cobblestone</name>
+        </value>
+        <value>
+          <key>CONCRETE</key>
+          <name>Concrete</name>
+        </value>
+        <value>
+          <key>OTHER015</key>
+          <name>Other</name>
+        </value>
+        <value>
+          <key>UNKNO001</key>
+          <name>Unknown</name>
+        </value>
+      </values>
+    </attribute>
+  </attributes>
+</service_definition>

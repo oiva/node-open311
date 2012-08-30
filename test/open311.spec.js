@@ -58,13 +58,122 @@ describe('Open311()', function() {
       expect(request.get.firstCall.args[0].qs.jurisdiction_id).to.equal('dc.gov');
       done();
     });
+  });
+
+  describe('.serviceList()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    beforeEach(function(done){
+      sinon.stub(request, 'get');
+      done();
+    });
+
+    afterEach(function(done){
+      request.get.restore();
+      done();
+    });
+
+    it('should correctly set the `/services` URL', function(done) {
+      open311.serviceList(function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/services.xml');
+      done();
+    });
 
     it('should convert XML to json/object', function(done) {
       var xml = fs.readFileSync(__dirname + '/mocks/dc-services.xml', 'utf8');
       // Mock request.get to return the XML when called
       request.get.callsArgWith(1, true, {statusCode: 200}, xml);
-      open311._get('services', function(err, body) {
-        expect(body).to.be.an('object');
+      open311.serviceList(function(err, data) {
+        expect(data).to.not.be.a('string');
+        done();
+      });
+    });
+
+    it('should cleanup nested XML lists', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+      open311.serviceList(function(err, data) {
+        expect(data).to.be.an('array');
+        done();
+      });
+    });
+  });
+
+  describe('.serviceDefinition()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    beforeEach(function(done){
+      sinon.stub(request, 'get');
+      done();
+    });
+
+    afterEach(function(done){
+      request.get.restore();
+      done();
+    });
+
+    it('should correctly set the `/services/:service_code` URL', function(done) {
+      open311.serviceDefinition('S0301', function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/services/S0301.xml');
+      done();
+    });
+
+    it('should convert XML to json/object', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services-S0301.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, true, {statusCode: 200}, xml);
+      open311.serviceDefinition('S0301', function(err, data) {
+        expect(data).to.not.be.a('string');
+        done();
+      });
+    });
+
+    it('should cleanup nested XML wrapper', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services-S0301.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+      open311.serviceDefinition('S0301', function(err, data) {
+        expect(data.service_code).to.exist;
+        done();
+      });
+    });
+
+    it('should cleanup nested XML `attributes array`', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services-S0301.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+      open311.serviceDefinition('S0301', function(err, data) {
+        expect(data.attributes).to.be.an('array');
+        done();
+      });
+    });
+
+    it('should cleanup nested XML `attributes[].values arrays`', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services-S0301.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+      open311.serviceDefinition('S0301', function(err, data) {
+        expect(data.attributes[1].values).to.be.an('array');
+        done();
+      });
+    });
+
+    it('should cleanup nested XML and set empty `attributes[].values` to null', function(done) {
+      var xml = fs.readFileSync(__dirname + '/mocks/dc-services-S0301.xml', 'utf8');
+      // Mock request.get to return the XML when called
+      request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+      open311.serviceDefinition('S0301', function(err, data) {
+        console.log(data);
+        expect(data.attributes[0].values).to.be.a('null');
         done();
       });
     });
