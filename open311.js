@@ -164,36 +164,65 @@ Open311.prototype.token = function(token, callback) {
 };
 
 /**
- * Get the status of multiple service requests.
- * @param format json|xml
- * @param parameters Optional arguments used when querying service requests.
- * @param callback Function to be executed on response from API.
- * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
- */
-Open311.prototype.getServiceRequestList = function(format, parameters, callback) {
-  var path = this.service_path + 'requests/' + format + '?jurisdiction_id=' + this.jurisdiction;
-  var params = '';
-  for (item in parameters) {
-    params += '&' + item + '=' + encodeURI(parameters[item]);
-  }
-  path = path + params;
-  this.makeAPICall('GET', path, callback);
-};
-
-/**
- * Get the status of a specific service request.
- * @param format json|xml
- * @param service_request_id The service request ID to query.
+ * Get the status of a single/multiple service requests.
+ * @param service_request_id (optional) The ID (string/numeric) of a single service request you want to return
+ * @param parameters (optional) url parameters
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Request
  */
-Open311.prototype.getServiceRequest = function(format, service_request_id, callback) {
-  var path = this.service_path + 'requests/' + service_request_id + '.'
-      + format + '?jurisdiction_id=' + this.jurisdiction;
-  this.makeAPICall('GET', path, callback);
+Open311.prototype.serviceRequests = function(serviceRequestId, params, callback) {
+  var self = this, url, data;
+
+  // check if there is a service_request_id
+  if(__.isObject(serviceRequestId)) {
+    params = serviceRequestId;
+    serviceRequestId = false;
+  }
+  // check if there are params
+  if (__.isFunction(params)) {
+    callback = params;
+    params = {};
+  }
+
+  if (serviceRequestId) {
+    url = 'requests/' + serviceRequestId;
+  }
+  else {
+    url = 'requests';
+  }
+
+  this._get(url, params, function(err, body) {
+    if (err) {
+      callback (err, body);
+      return;
+    }
+
+    if (self.format === 'xml') {
+      data = self._parseServiceRequestsXml(body);
+    }
+    else {
+      data = JSON.parse(body);
+    }
+    callback(null, data);
+  });
 };
 
+/**
+ * Get the status of a single service request.
+ * Alias of serviceRequests()
+ */
+Open311.prototype.serviceRequest = Open311.prototype.serviceRequests;
 
+/**
+ * Utility method for parsing Service Requests XML
+ * @param xml 
+ */
+
+Open311.prototype._parseServiceRequestsXml = function(xml) {
+  var data;
+  data = xmlParser.toJson(xml, {object: true}).service_requests.request;
+  return data;
+}
 
 /**
  * Utility method for making a GET request to the Open311 API. 

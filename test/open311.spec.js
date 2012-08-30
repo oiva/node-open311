@@ -323,4 +323,100 @@ describe('Open311()', function() {
       });
     });
   });
+
+  describe('.serviceRequests()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    beforeEach(function(done){
+      sinon.stub(request, 'get');
+      done();
+    });
+
+    afterEach(function(done){
+      request.get.restore();
+      done();
+    });
+
+    it('should handle arguments of only callback (no id, no params)', function(done) {
+      open311.serviceRequests(function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
+      done();
+    });
+
+    it('should handle arguments of only params & callback (no id)', function(done) {
+      open311.serviceRequests({"extended_attributes": true}, function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
+      expect(request.get.firstCall.args[0].qs).to.contain.keys(['extended_attributes']);
+      done();
+    });
+
+    it('should handle arguments of only string id & callback (no params)', function(done) {
+      open311.serviceRequests('abcde', function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests/abcde.xml');
+      done();
+    });
+
+    it('should handle arguments of only numeric id & callback (no params)', function(done) {
+      open311.serviceRequests(12345, function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests/12345.xml');
+      done();
+    });
+
+    it('should handle arguments of all string id, params & callback', function(done) {
+      open311.serviceRequests('abcde', {"extended_attributes": true}, function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests/abcde.xml');
+      expect(request.get.firstCall.args[0].qs).to.contain.keys(['extended_attributes']);
+      done();
+    });
+
+    it('should handle arguments of all numeric id, params & callback', function(done) {
+      open311.serviceRequests(12345, {"extended_attributes": true}, function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests/12345.xml');
+      expect(request.get.firstCall.args[0].qs).to.contain.keys(['extended_attributes']);
+      done();
+    });
+  });
+
+  describe('.serviceRequest()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    it('should be an alias of serviceRequests()', function(done) {
+      expect(open311.serviceRequest).to.eql(open311.serviceRequests);
+      done();
+    });
+  });
+
+  describe('._parseServiceRequestsXml()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    it("should convert single SR's XML to json/object", function(done) {
+      var xml, json;
+      xml = fs.readFileSync(__dirname + '/mocks/service-request.xml', 'utf8');
+      json = open311._parseServiceRequestsXml(xml);
+
+      expect(json).to.have.contain.keys(['service_request_id', 'status']);
+      done();
+    });
+
+    it("should convert multiple SRs' XML to json/object", function(done) {
+      var xml, json;
+      xml = fs.readFileSync(__dirname + '/mocks/service-requests.xml', 'utf8');
+      json = open311._parseServiceRequestsXml(xml);
+      expect(json).to.be.an('array');
+      expect(json[0]).to.have.contain.keys(['service_request_id', 'status']);
+      done();
+    });
+  });
 });
