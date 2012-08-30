@@ -25,6 +25,11 @@ var Open311 = module.exports = function(options) {
   if (options.jurisdiction) {
     this.jurisdiction = options.jurisdiction;
   }
+
+  if(options.apiKey) {
+    this.apiKey = options.apiKey;
+  }
+
   this.format = options.format || 'json';
   //this.secure = options.secure || false;
   //this.port = options.port || 80;
@@ -101,36 +106,61 @@ Open311.prototype.serviceDefinition = function(service_code, callback) {
 };
 
 /**
- * Create a new service request.
- * @param format json|xml
- * @param service_code The service code to use when creating the request.
- * @param api_key Open311 API key.
- * @param parameters An object with parameters used to create the request.
+ * Submit a new service request.
+ * @param data An object with keys/values used form post
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
  */
-Open311.prototype.postSericeRequest = function(format, service_code, api_key, parameters, callback) {
-  var path = this.service_path + 'requests/' + format + '?api_key=' + api_key
-      + '&jurisdiction_id=' + this.jurisdiction;
-  var params = '';
-  for (item in parameters) {
-    params += '&' + item + '=' + encodeURI(parameters[item]);
+Open311.prototype.submitRequest = function(data, callback) {
+  var self = this, resData;
+  if (typeof self.apiKey === 'undefined') {
+    throw new Error('Submitting a Service Request requires an API Key');
   }
-  path = path + params;
-  this.makeAPICall('POST', path, callback);
+  else {
+    data.api_key = self.apiKey;
+  }
+
+  this._post('requests', data, function(err, body) {
+    if (err) {
+      callback (err, body);
+      return;
+    }
+
+    if (self.format === 'xml') {
+      resData = xmlParser.toJson(body, {object: true}).service_requests.request;
+      resData = [ resData ] // object needs to be wrapped in an array
+    }
+    else {
+      resData = JSON.parse(body);
+    }
+
+    callback(null, resData);
+  });
 };
 
 /**
  * Get a service request ID from a temporary token.
  * @param format json|xml
- * @param token_id The temporary token ID.
+ * @param token The temporary token ID.
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#GET_request_id_from_a_token
  */
-Open311.prototype.getRequestIdFromToken = function(format, token_id, callback) {
-  var path = this.service_path + 'tokens/' + token_ + id + '.' + format
-      + '?jurisdiction_id=' + this.jurisdiction;
-  this.makeAPICall('GET', path, callback);
+Open311.prototype.token = function(token, callback) {
+  var self = this, data;
+  this._get('tokens/' + token, function(err, body) {
+    if (err) {
+      callback (err, body);
+      return;
+    }
+
+    if (self.format === 'xml') {
+      data = xmlParser.toJson(body, {object: true}).service_requests.request;
+    }
+    else {
+      data = JSON.parse(body);
+    }
+    callback(null, data);
+  });
 };
 
 /**
@@ -216,8 +246,9 @@ Open311.prototype._post = function(path, form, params, callback) {
     qs: params,
     form: form
   }, function (err, res, body) {
-    if (res.statusCode !== 200) {
-      callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
+    if (res.statusCode >= 300) {
+      console.log(body);
+      callback(res.statusCode, 'There was an error connecting to the Open311 API: ' + res.statusCode + '; ' + body);
       return;
     }
     callback(false, body);
@@ -264,7 +295,7 @@ Open311.prototype.makeAPICall = function(method, path, callback) {
   // Simple utilty function to get HTTP response.
   function getResponse(response) {
     if (response.statusCode == 404) {
-      callback(true, 'There was an error connecting to the Open311 API: ' + response.statusCode);
+      callback(response.statusCode, 'There was an error connecting to the Open311 API: ');
     }
     else {
       response.setEncoding('utf8');
