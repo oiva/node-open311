@@ -195,6 +195,33 @@ Open311.prototype._get = function(path, params, callback) {
   });
 }
 
+Open311.prototype._post = function(path, form, params, callback) {
+  var self = this;
+  // make params optional
+  if (__.isFunction(params)) {
+    callback = params;
+    params = {};
+  }
+
+  // make sure the jurisdiction_id is set
+  if (this.jurisdiction) {
+    params.jurisdiction_id = params.jurisdiction_id || this.jurisdiction;
+  }
+
+ // make our GET request
+  request.post({
+    url: this.endpoint + path + '.' + this.format,
+    qs: params,
+    form: form
+  }, function (err, res, body) {
+    if (res.statusCode !== 200) {
+      callback(true, 'There was an error connecting to the Open311 API: ' + res.statusCode);
+      return;
+    }
+    callback(false, body);
+  });
+}
+
 /**
  * Utility method for making an HTTP request to the Open311 API. 
  * @param format json|xml

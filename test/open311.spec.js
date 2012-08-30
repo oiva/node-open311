@@ -60,6 +60,41 @@ describe('Open311()', function() {
     });
   });
 
+  describe('._post()', function() {
+    var open311 = new Open311({
+      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
+      format: 'xml',
+      jurisdiction: 'dc.gov'
+    });
+
+    beforeEach(function(done){
+      sinon.stub(request, 'post');
+      done();
+    });
+
+    afterEach(function(done){
+      request.post.restore();
+      done();
+    });
+
+    it('should should allow the `params` argument to be optional', function(done) {
+      open311._post('services', {}, function(err, body) {}) // shouldn't throw an exception
+      done();      
+    });
+
+    it('should correctly format the URL', function(done) {
+      open311._post('requests', {}, function(err, body) {});
+      expect(request.post.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
+      done();
+    });
+
+    it('should set the jurisdiction_id parameter', function(done) {
+      open311._post('requests', {}, function(err, body) {});
+      expect(request.post.firstCall.args[0].qs.jurisdiction_id).to.equal('dc.gov');
+      done();
+    });
+  });
+
   describe('.serviceList()', function() {
     var open311 = new Open311({
       endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
@@ -172,7 +207,6 @@ describe('Open311()', function() {
       // Mock request.get to return the XML when called
       request.get.callsArgWith(1, false, {statusCode: 200}, xml);
       open311.serviceDefinition('S0301', function(err, data) {
-        console.log(data);
         expect(data.attributes[0].values).to.be.a('null');
         done();
       });
