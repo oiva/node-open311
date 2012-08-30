@@ -22,7 +22,9 @@ var xmlParser = require('xml2json');
 var Open311 = module.exports = function(options) {
   this.endpoint = options.endpoint;
   //this.service_path = options.service_path;
-  this.jurisdiction = options.jurisdiction;
+  if (options.jurisdiction) {
+    this.jurisdiction = options.jurisdiction;
+  }
   this.format = options.format || 'json';
   //this.secure = options.secure || false;
   //this.port = options.port || 80;

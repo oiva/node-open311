@@ -23,6 +23,23 @@ describe('Open311()', function() {
       expect(open311.jurisdiction).to.equal('dc.gov');
       done();
     });
+
+    it("should only set this.jurisdiction if it exists in options", function(done) {
+      open311 = new Open311({
+        endpoint: 'https://mayors24.cityofboston.gov/open311/v2/',
+      });
+      expect(open311).to.not.have.keys(['jurisdiction']);
+      done();
+    });
+
+    it("should default this.format to 'json'", function(done) {
+      open311 = new Open311({
+        endpoint: 'https://mayors24.cityofboston.gov/open311/v2/',
+      });
+      expect(open311.format).to.equal('json');
+      done();
+    });
+
   });
 
   describe('._get()', function() {
