@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<discovery>
+  <changeset>2012-03-08T16:00:00-05:00</changeset>
+  <contact>You can email or call for assistance octo@dc.gov +1 (202) 727-2277</contact>
+  <key_service>You can request a key here: http://octo.dc.gov/</key_service>
+  <endpoints>
+    <endpoint>
+      <specification>http://wiki.open311.org/GeoReport_v2</specification>
+      <url>http://app.311.dc.gov/cwi/Open311/v2</url>
+      <changeset>2012-03-08T16:00:00-05:00</changeset>
+      <type>production</type>
+      <formats>
+        <format>text/xml</format>
+      </formats>
+    </endpoint>
+    <endpoint>
+      <specification>http://wiki.open311.org/GeoReport_v2.1_Draft</specification>
+      <url>http://app.311.dc.gov/cwi/Open311</url>
+      <changeset>2012-03-08T16:00:00-05:00</changeset>
+      <type>production</type>
+      <formats>
+        <format>text/xml</format>
+      </formats>
+    </endpoint>
+  </endpoints>
+</discovery>

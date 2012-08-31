@@ -1,0 +1,27 @@
+{
+    "changeset": "2011-09-1 17:35", 
+    "contact": "You can email for assistance to developers@cityofboston.gov", 
+    "key_service": "You can request a key here: https://mayors24.cityofboston.gov:6443/open311",
+    "endpoints": [
+        {
+            "changeset": "2011-09-1 17:35", 
+            "formats": [
+                "text/xml", 
+                "application/json"
+            ], 
+            "specification": "http://wiki.open311.org/GeoReport_v2", 
+            "type": "production", 
+            "url": "https://mayors24.cityofboston.gov/open311/v2"
+        }, 
+        {
+            "changeset": "2011-09-1 17:35", 
+            "formats": [
+                "text/xml", 
+                "application/json"
+            ], 
+            "specification": "http://wiki.open311.org/GeoReport_v2", 
+            "type": "test", 
+            "url": "https://mayors24.cityofboston.gov:6443/open311/v2"
+        }
+    ]
+}

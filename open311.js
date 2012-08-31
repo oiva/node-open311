@@ -6,9 +6,10 @@
  * 
  */
 
-// Include required Node.js modules.
 var http = require('http');
 var https = require('https');
+var urlLib = require('url');
+var pathLib = require('path');
 var request = require('request');
 var qs = require('querystring');
 var __ = require('lodash');
@@ -21,7 +22,11 @@ var xmlParser = require('xml2json');
  */
 var Open311 = module.exports = function(options) {
   this.endpoint = options.endpoint;
-  //this.service_path = options.service_path;
+
+  if (options.discovery) {
+    this.discovery = options.discovery;
+  }
+
   if (options.jurisdiction) {
     this.jurisdiction = options.jurisdiction;
   }
@@ -31,20 +36,85 @@ var Open311 = module.exports = function(options) {
   }
 
   this.format = options.format || 'json';
-  //this.secure = options.secure || false;
-  //this.port = options.port || 80;
-  //this.responseBody = "";
 };
 
 /**
  * Service discovery.
- * @param format json|xml
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/Service_Discovery
  */
-Open311.prototype.serviceDiscovery = function(format, callback) {
-  var path = this.service_path + 'discovery.' + format;
-  this.makeAPICall('GET', path, callback);
+Open311.prototype.serviceDiscovery = function(options, callback) {
+  var self = this, url, path, format, data, endpoints, endpoint;
+
+  // check if there are options
+  if (__.isFunction(options)) {
+    callback = options;
+    options = {};
+  }
+
+  // set default options
+  options.cache = options.cache || false;
+  options.type = options.type || 'production';
+  options.specification = options.specification || 'http://wiki.open311.org/GeoReport_v2';
+  options.index = options.index || 0; // in the awful case that 
+
+  // make sure the discovery URL is set
+  if (typeof self.discovery === 'undefined') {
+    throw new Error('You must set set a discovery URL in your Open311({discovery: "URL"}) object');
+  }
+
+  // get the format from our discovery URL
+  format = pathLib.extname( urlLib.parse( self.discovery).pathname ).slice(1) // remove the leading period;
+
+  // we can't use our _get() helper method since we have a different base URL
+  request.get({
+    url: self.discovery
+  }, function (err, res, body) {
+    if (res.statusCode !== 200) {
+      callback(res.statusCode, 'There was an error connecting to the Open311 Discovery API: ' + res.statusCode);
+      return;
+    }
+
+    if (format === 'xml') {
+      data = xmlParser.toJson(body, {object: true}).discovery;
+      data.endpoints = data.endpoints.endpoint;
+    }
+    else {
+      data = JSON.parse(body);
+    }
+
+    // do we save the data to the object?
+    if (options.cache) {
+      // filter the list of available endpoints by our specification and type
+      endpoints = __.filter(data.endpoints, function(endpoint) {
+        return (
+          (endpoint.specification === options.specification) &&
+          (endpoint.type === options.type)
+        );
+      });
+      endpoint = endpoints[options.index];
+            
+      // set the endpoint url
+      self.endpoint = endpoint.url;
+      
+      
+      
+      // detect whether there is a trailing slash (there should be)
+      if (self.endpoint.slice(-1) !== '/') {
+        self.endpoint = self.endpoint + '/';
+      }
+      
+      // try to find JSON in the format, otherwise set format to be XML
+      if (__.indexOf(endpoint.formats, 'application/json' !== -1)) {
+        self.format = 'json'
+      }
+      else {
+        self.format = 'xml';
+      }
+    }
+
+    callback(false, data);
+  });
 };
 
 /**
@@ -171,7 +241,7 @@ Open311.prototype.token = function(token, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Request
  */
 Open311.prototype.serviceRequests = function(serviceRequestId, params, callback) {
-  var self = this, url, data;
+  var self = this, url, jsonFormats, xmlFormats, data;
 
   // check if there is a service_request_id
   if(__.isObject(serviceRequestId)) {
@@ -203,6 +273,10 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     else {
       data = JSON.parse(body);
     }
+
+    jsonFormats = ['application/json'];
+    xmlFormats = ['text/xml'];
+
     callback(null, data);
   });
 };
@@ -256,6 +330,13 @@ Open311.prototype._get = function(path, params, callback) {
   });
 }
 
+/**
+ * Utility method for making a POST request to the Open311 API. 
+ * @param path url path to be appended to the base URL e.g. 'requests'
+ * @param form the keys/values to be POSTed
+ * @param params (optional) url parameters
+ * @param callback Function to be executed on response from API.
+ */
 Open311.prototype._post = function(path, form, params, callback) {
   var self = this;
   // make params optional
@@ -283,58 +364,3 @@ Open311.prototype._post = function(path, form, params, callback) {
     callback(false, body);
   });
 }
-
-/**
- * Utility method for making an HTTP request to the Open311 API. 
- * @param format json|xml
- * @param path The URI to send the HTTP request to.
- * @param callback Function to be executed on response from API.
- */
-Open311.prototype.makeAPICall = function(method, path, callback) {
-
-  var self = this;
-
-  var content_type = method == 'POST' ? 'application/x-www-form-urlencoded' : 'text/plain';
-  var request_headers = {
-    'Content-Type' : content_type
-  };
-  var options = {
-    host : this.endpoint,
-    port : this.port,
-    path : path,
-    method : method,
-    headers : request_headers
-  };
-  
-  // Determine if SSL is used.
-  if (this.secure) {
-    var open311 = https.request(options, function(response){
-      getResponse(response);
-    });
-    open311.end();
-  }
-
-  else {
-    var open311 = http.request(options, function(response){
-      getResponse(response);
-    });
-    open311.end();
-  }
-  
-  // Simple utilty function to get HTTP response.
-  function getResponse(response) {
-    if (response.statusCode == 404) {
-      callback(response.statusCode, 'There was an error connecting to the Open311 API: ');
-    }
-    else {
-      response.setEncoding('utf8');
-      response.on('data', function(chunk) {
-        self.responseBody += chunk;
-      });
-      response.on('end', function() {
-        callback(false, self.responseBody);
-      }); 
-    }
-  }
-
-};
