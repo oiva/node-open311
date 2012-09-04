@@ -40,6 +40,7 @@ var Open311 = module.exports = function(options) {
 
 /**
  * Service discovery.
+ * @param options Object that defines whether the result should be cached
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/Service_Discovery
  */
@@ -97,8 +98,6 @@ Open311.prototype.serviceDiscovery = function(options, callback) {
       // set the endpoint url
       self.endpoint = endpoint.url;
       
-      
-      
       // detect whether there is a trailing slash (there should be)
       if (self.endpoint.slice(-1) !== '/') {
         self.endpoint = self.endpoint + '/';
@@ -142,7 +141,6 @@ Open311.prototype.serviceList = function(callback) {
 
 /**
  * Get the attributes associated with a specific service code.
- * @param format json|xml
  * @param service_code The service code to be looked up.
  * @param callback Function to be executed on response from API.
  * @see http://wiki.open311.org/GeoReport_v2#GET_Service_Definition
