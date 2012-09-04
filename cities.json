@@ -1,0 +1,48 @@
+[
+  {
+    "id": "boston",
+    "name": "Boston, MA",
+    "vendor": "connectedbits",
+    "discovery": "https://mayors24.cityofboston.gov/open311/discovery.json",
+    "endpoint": "https://mayors24.cityofboston.gov/open311/v2/"
+  },
+  {
+    "id": "bloomington",
+    "name": "Bloomington, IN",
+    "vendor": "inhouse",
+    "discovery": "https://bloomington.in.gov/crm/open311/discovery.json",
+    "endpoint": "https://bloomington.in.gov/crm/open311/v2/"
+  },
+  {
+    "id": "baltimore",
+    "name": "Baltimore, MD",
+    "vendor": "connectedbits",
+    "discovery": "http://311.baltimorecity.gov/open311/discovery.json",
+    "endpoint": "http://311.baltimorecity.gov/open311/v2/"
+  },
+  {
+    "id": "dc",
+    "name": "Washington, DC",
+    "vendor": "inhouse",
+    "discovery": "http://app.311.dc.gov/cwi/Open311/discovery.json",
+    "endpoint": "http://app.311.dc.gov/CWI/Open311/v2/",
+    "format": "xml",
+    "jurisdiction": "dc.gov"
+  },
+  {
+    "id": "oakland",
+    "name": "Oakland, CA",
+    "vendor": "seeclickfix",
+    "discovery": "http://seeclickfix.com/oakland/open311/discovery.json",
+    "endpoint": "http://seeclickfix.com/oakland/open311.json/v2/"
+  },
+  {
+    "id": "sf",
+    "name": "San Francisco, CA",
+    "vendor": "inhouse",
+    "discovery": "https://open311.sfgov.org/dev/v2/discovery.xml",
+    "endpoint": "https://open311.sfgov.org/V2/",
+    "format": "xml",
+    "jurisdiction": "sfgov.org"
+  }
+]
