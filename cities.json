@@ -44,5 +44,13 @@
     "endpoint": "https://open311.sfgov.org/V2/",
     "format": "xml",
     "jurisdiction": "sfgov.org"
+  },
+  {
+    "id": "toronto",
+    "name": "Toronto, Canada",
+    "discovery": "https://secure.toronto.ca/open311test/discovery.json",
+    "endpoint": "https://secure.toronto.ca/webwizard/ws/",
+    "jurisdiction": "toronto.ca",
+    "format": "xml"
   }
 ]
