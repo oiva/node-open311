@@ -50,19 +50,23 @@ var Open311 = module.exports = function(options) {
  * @see http://wiki.open311.org/Service_Discovery
  */
 Open311.prototype.serviceDiscovery = function(options, callback) {
-  var self = this, url, path, format, data, endpoints, endpoint;
+  var self = this, defaults, url, path, format, data, endpoints, endpoint;
 
   // check if there are options
   if (__.isFunction(options)) {
     callback = options;
     options = {};
   }
-
-  // set default options
-  options.cache = options.cache || false;
-  options.type = options.type || 'production';
-  options.specification = options.specification || 'http://wiki.open311.org/GeoReport_v2';
-  options.index = options.index || 0; // in the awful case that 
+  
+  defaults = {
+    cache: false,
+    type: 'production',
+    specification: 'http://wiki.open311.org/GeoReport_v2',
+    index: 0
+  };
+  
+  // add our defaults to the options; options is also cloned
+  options = __.extend(defaults, options);
 
   // make sure the discovery URL is set
   if (typeof self.discovery === 'undefined') {
@@ -186,6 +190,10 @@ Open311.prototype.serviceDefinition = function(service_code, callback) {
  */
 Open311.prototype.submitRequest = function(data, callback) {
   var self = this, attribute, resData;
+  
+  // deep clone the Service Request data in case the data object is reuesed
+  data = __.clone(data, true);
+  
   if (typeof self.apiKey === 'undefined') {
     throw new Error('Submitting a Service Request requires an API Key');
   }
@@ -198,6 +206,7 @@ Open311.prototype.submitRequest = function(data, callback) {
       data['attribute[' + attribute + ']'] = data.attributes[attribute];
     }
   }
+  delete data.attributes; // remove the attributes since they are now unnecessary
 
   this._post('requests', data, function(err, body) {
     if (err) {
@@ -221,7 +230,8 @@ Open311.prototype.submitRequest = function(data, callback) {
  * Get a service request ID from a temporary token.
  * @param format json|xml
  * @param token The temporary token ID.
- * @param callback Function to be executed on response from API.
+ * @param callback Function to be executed on response from API; 
+ * Callback returns either the service_request_id (if available) or null
  * @see http://wiki.open311.org/GeoReport_v2#GET_request_id_from_a_token
  */
 Open311.prototype.token = function(token, callback) {
@@ -236,8 +246,9 @@ Open311.prototype.token = function(token, callback) {
       data = xmlParser.toJson(body, {object: true}).service_requests.request;
     }
     else {
-      data = JSON.parse(body);
+      data = JSON.parse(body); // it's returned as an 
     }
+    
     callback(null, data);
   });
 };
@@ -262,6 +273,9 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     callback = params;
     params = {};
   }
+  
+  // clone the params in case of reuse
+  params = __.clone(params);
 
   // if serviceRequestId is NOT submitted as an array, use the URL method
   if (serviceRequestId && !__.isArray(serviceRequestId)) {    
