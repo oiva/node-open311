@@ -525,6 +525,21 @@ describe('.serviceDiscovery()', function() {
       expect(request.get.firstCall.args[0].qs.service_request_id).to.equal('abcde,12345');
       done();
     });
+    
+    describe('cleaning of individual service requests', function() {
+      var xml = fs.readFileSync(__dirname + '/mocks/service-requests.xml', 'utf8');
+      
+      it('should convert requested_datetime and updated_datetime to Date objects', function(done) {
+        request.get.callsArgWith(1, false, {statusCode: 200}, xml);
+        open311.serviceRequests(function(err, data) {
+          expect(data[0].requested_datetime).to.be.instanceOf(Date);
+          expect(data[0].updated_datetime).to.be.instanceOf(Date);
+          done();
+        });
+      });
+      
+    });
+        
   });
 
   describe('.serviceRequest()', function() {
@@ -547,16 +562,16 @@ describe('.serviceDiscovery()', function() {
       jurisdiction: 'dc.gov'
     });
 
-    it("should convert single SR's XML to json/object", function(done) {
+    it("should convert single SR's XML to an array wrapped js object", function(done) {
       var xml, json;
       xml = fs.readFileSync(__dirname + '/mocks/service-request.xml', 'utf8');
       json = open311._parseServiceRequestsXml(xml);
-
-      expect(json).to.have.contain.keys(['service_request_id', 'status']);
+      expect(json).to.be.an('array');
+      expect(json[0]).to.have.contain.keys(['service_request_id', 'status']);
       done();
     });
 
-    it("should convert multiple SRs' XML to json/object", function(done) {
+    it("should convert multiple SRs' XML to array wrapped js objects", function(done) {
       var xml, json;
       xml = fs.readFileSync(__dirname + '/mocks/service-requests.xml', 'utf8');
       json = open311._parseServiceRequestsXml(xml);

@@ -23,12 +23,7 @@ var Open311 = module.exports = function(options) {
   var id, city;
   
   if (__.isObject(options)) {
-    
-    __.extend(this, options);
-    
-    __.defaults(this, {
-      format: 'json'
-    });
+    __.extend(this, options); 
   }
   else {
     id = options;
@@ -42,6 +37,10 @@ var Open311 = module.exports = function(options) {
     
     __.extend(this, city);
   }
+    
+  __.defaults(this, {
+    format: 'json'
+  });
 };
 
 /**
@@ -289,6 +288,11 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     else {
       data = JSON.parse(body);
     }
+    
+    __.each(data, function(request) {
+      request.requested_datetime = new Date(request.requested_datetime);
+      request.updated_datetime = new Date(request.updated_datetime);
+    });
 
     callback(null, data);
   });
@@ -308,6 +312,9 @@ Open311.prototype.serviceRequest = Open311.prototype.serviceRequests;
 Open311.prototype._parseServiceRequestsXml = function(xml) {
   var data;
   data = xmlParser.toJson(xml, {object: true}).service_requests.request;
+  if (!__.isArray(data)) {
+    data = [ data ];
+  }
   return data;
 }
 
@@ -370,7 +377,6 @@ Open311.prototype._post = function(path, form, params, callback) {
     form: form
   }, function (err, res, body) {
     if (res.statusCode >= 300) {
-      console.log(body);
       callback(res.statusCode, 'There was an error connecting to the Open311 API: ' + res.statusCode + '; ' + body);
       return;
     }
