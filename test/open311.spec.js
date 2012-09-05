@@ -347,7 +347,23 @@ describe('.serviceDiscovery()', function() {
     it("should attach this.apiKey to the form data as `api_key`", function(done) {
       open311.submitRequest({}, function(err, data) {});
 
+
       expect(request.post.firstCall.args[0].form['api_key']).to.equal('API_KEY');
+      done();
+
+    });
+    
+    it("should parse attributes into the attribute[key]=value format", function(done) {
+      open311.submitRequest({
+        attributes: {
+          license_plate: "A1234567",
+          color: "blue"
+        }
+      }, function(err, data) {});
+      expect(request.post.firstCall.args[0].form).to.contain.keys(['attribute[license_plate]', 'attribute[color]']);
+      expect(request.post.firstCall.args[0].form['attribute[license_plate]']).to.equal("A1234567");
+      expect(request.post.firstCall.args[0].form['attribute[color]']).to.equal('blue');
+      
       done();
 
     });

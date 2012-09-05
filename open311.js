@@ -178,12 +178,18 @@ Open311.prototype.serviceDefinition = function(service_code, callback) {
  * @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
  */
 Open311.prototype.submitRequest = function(data, callback) {
-  var self = this, resData;
+  var self = this, attribute, resData;
   if (typeof self.apiKey === 'undefined') {
     throw new Error('Submitting a Service Request requires an API Key');
   }
   else {
     data.api_key = self.apiKey;
+  }
+
+  if (__.isObject(data.attributes)) {
+    for (attribute in data.attributes) {
+      data['attribute[' + attribute + ']'] = data.attributes[attribute];
+    }
   }
 
   this._post('requests', data, function(err, body) {

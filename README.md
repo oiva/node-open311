@@ -107,7 +107,32 @@ According to the Open311 specification, `data` must include:
 
 - `service_code`
 - `lat` & `long` _OR_ `address_string` _OR_ `address_id`: the specification is wiggly here, but `lat`/`long` is near universally required (despite the "OR")
-- attributes (see `Open311.serviceDefinition`) set with the key `attribute[<code>]`
+- attributes (see `Open311.serviceDefinition`) set with the key `attribute[<code>]` _OR_ add assign `data.attributes` to be an object with key/values: e.g. Submitting this:
+    
+  ```javascript
+  data = {
+    "service_code": "ABANDONED_VEHICLE",
+    "lat": 12.345,
+    "long": 67.890,
+    "attributes": {
+      "license_plate": "A234567",
+      "color": "blue"
+    }
+  }
+  ```
+  
+  ...will result in the appropriate and standard-compliant attributes being constructed:
+  
+  ```javascript
+  data = {
+    "service_code": "ABANDONED_VEHICLE",
+    "lat": 12.345,
+    "long": 67.890,
+    "attribute[license_plate]": "A234567",
+    "attribute[color]": "blue"
+  }
+  ```
+
 
 ### token(token, callback)
 
@@ -158,7 +183,7 @@ baltimore.serviceRequest(['12-00677322'], function(err, data){
 OR
 
 ```javascript
-// as an even bigger array
+// as an even BIGGER array
 baltimore.serviceRequest(['12-00677322', '12-00677323'], function(err, data){ 
   console.log(data); // do something with the data!
 });
