@@ -12,6 +12,7 @@ var request = require('request');
 var qs = require('querystring');
 var __ = require('lodash');
 var xmlParser = require('xml2json');
+var Cities = require('./cities');
 
 /**
  * Class constructor
@@ -19,21 +20,28 @@ var xmlParser = require('xml2json');
  * @param options Open311 settings.
  */
 var Open311 = module.exports = function(options) {
-  this.endpoint = options.endpoint;
-
-  if (options.discovery) {
-    this.discovery = options.discovery;
+  var id, city;
+  
+  if (__.isObject(options)) {
+    
+    __.extend(this, options);
+    
+    __.defaults(this, {
+      format: 'json'
+    });
   }
-
-  if (options.jurisdiction) {
-    this.jurisdiction = options.jurisdiction;
+  else {
+    id = options;
+    city = __.find(Cities, function(city) {
+      return (city.id === id)
+    });
+    
+    if (typeof city === 'undefined') {
+      throw new Error('"' + id + '" is not in our list of prepopulatable endpoints' );
+    }
+    
+    __.extend(this, city);
   }
-
-  if(options.apiKey) {
-    this.apiKey = options.apiKey;
-  }
-
-  this.format = options.format || 'json';
 };
 
 /**

@@ -40,7 +40,32 @@ describe('Open311()', function() {
       expect(open311.format).to.equal('json');
       done();
     });
-
+    describe("when passing a city string in to the constructor", function() {
+      var Cities = require(__dirname + '../../cities');
+      Cities = [{
+        "id": "baltimore",
+        "name": "Baltimore, MD",
+        "vendor": "connectedbits",
+        "discovery": "http://311.baltimorecity.gov/open311/discovery.json",
+        "endpoint": "http://311.baltimorecity.gov/open311/v2/"
+      }];
+      
+      it("should automatically hydrate the instance with the options", function(done) {
+        open311 = new Open311("baltimore");
+        
+        expect(open311.id).to.equal('baltimore');
+        expect(open311.name).to.equal('Baltimore, MD');
+        expect(open311.vendor).to.equal('connectedbits');
+        expect(open311.discovery).to.equal('http://311.baltimorecity.gov/open311/discovery.json');                        
+        expect(open311.endpoint).to.equal('http://311.baltimorecity.gov/open311/v2/');        
+        done();
+      });
+      
+      it("should throw an error if the city is not in our big list of cities", function(done) {
+        expect(function() { new Open311("katmandu"); }).to.throw('"katmandu" is not in our list of prepopulatable endpoints');
+        done();
+      });
+    });
   });
 
 describe('.serviceDiscovery()', function() {

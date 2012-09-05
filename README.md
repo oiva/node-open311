@@ -36,7 +36,13 @@ baltimore.serviceRequest('12-00677322', function(err, data){
 
 ### new Open311(options)
 
-To use this library, you must instantiate a new Open311 object: `var open311 = new Open311(options)`. Available `options` include:
+To use this library, you must instantiate a new Open311 object: `var open311 = new Open311(options)`. 
+
+You can construct by passing a string that corresponds to the id of a city that is defined in the [`cities.json`](https://github.com/codeforamerica/node-open311/blob/master/cities.json) file. 
+
+e.g. `var baltimore = new Open311('baltimore');`
+
+Or, you can pass individual `options`, including:
 
 - `endpoint`: the URL of the Open311 server; required for all methods except `Open311.serviceDiscovery()`
 - `jurisdiction`: (optional) the `jurisdiction_id` for a given city, if required
@@ -107,7 +113,7 @@ According to the Open311 specification, `data` must include:
 
 - `service_code`
 - `lat` & `long` _OR_ `address_string` _OR_ `address_id`: the specification is wiggly here, but `lat`/`long` is near universally required (despite the "OR")
-- attributes (see `Open311.serviceDefinition`) set with the key `attribute[<code>]` _OR_ add assign `data.attributes` to be an object with key/values: e.g. Submitting this:
+- attributes (see `Open311.serviceDefinition`) set with the key `attribute[<code>]` _OR_ assign `data.attributes` to be an object with key/values: e.g. Submitting this:
     
   ```javascript
   data = {
