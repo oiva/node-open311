@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 var Open311 = require('../open311');
 var request = require('request');
-var xmlParser = require('xml2json');
+var spark = require('sparkxml');
 var fs    = require('fs');
 
 describe('Open311()', function() {
@@ -97,12 +97,12 @@ describe('.serviceDiscovery()', function() {
     
     it('should parse XML when discovery.xml', function(done) {
       request.get.callsArgWith(1, true, {statusCode: 200}, xml);
-      sinon.spy(xmlParser, 'toJson');
+      sinon.spy(spark, 'parseXml');
     
       open311.serviceDiscovery(function(err, data) {});
-      expect(xmlParser.toJson.called).to.be.true;
+      expect(spark.parseXml.called).to.be.true;
     
-      xmlParser.toJson.restore(); // cleanup 
+      spark.parseXml.restore(); // cleanup 
       done();
     });
     
@@ -398,7 +398,6 @@ describe('.serviceDiscovery()', function() {
       open311.format = 'xml';
 
       request.post.callsArgWith(1, false, {statusCode: 201}, xml);
-
       open311.submitRequest({}, function(err, data) {
         expect(JSON.stringify(data)).to.equal(JSON.stringify([{ token: '503fc045901932078800163c' }]));
         
@@ -446,8 +445,8 @@ describe('.serviceDiscovery()', function() {
       // Mock request.get to return the XML when called
       request.get.callsArgWith(1, false, {statusCode: 200}, xml);
       open311.token('12345', function(err, data) {
-        expect(data.token).to.equal('12345');
-        expect(data['service_request_id']).to.equal('638344');
+        expect(data[0].token).to.equal(12345);
+        expect(data[0]['service_request_id']).to.equal(638344);
 
         done();
       });
@@ -537,9 +536,7 @@ describe('.serviceDiscovery()', function() {
           done();
         });
       });
-      
     });
-        
   });
 
   describe('.serviceRequest()', function() {
@@ -551,32 +548,6 @@ describe('.serviceDiscovery()', function() {
 
     it('should be an alias of serviceRequests()', function(done) {
       expect(open311.serviceRequest).to.eql(open311.serviceRequests);
-      done();
-    });
-  });
-
-  describe('._parseServiceRequestsXml()', function() {
-    var open311 = new Open311({
-      endpoint: 'http://app.311.dc.gov/CWI/Open311/v2/',
-      format: 'xml',
-      jurisdiction: 'dc.gov'
-    });
-
-    it("should convert single SR's XML to an array wrapped js object", function(done) {
-      var xml, json;
-      xml = fs.readFileSync(__dirname + '/mocks/service-request.xml', 'utf8');
-      json = open311._parseServiceRequestsXml(xml);
-      expect(json).to.be.an('array');
-      expect(json[0]).to.have.contain.keys(['service_request_id', 'status']);
-      done();
-    });
-
-    it("should convert multiple SRs' XML to array wrapped js objects", function(done) {
-      var xml, json;
-      xml = fs.readFileSync(__dirname + '/mocks/service-requests.xml', 'utf8');
-      json = open311._parseServiceRequestsXml(xml);
-      expect(json).to.be.an('array');
-      expect(json[0]).to.have.contain.keys(['service_request_id', 'status']);
       done();
     });
   });

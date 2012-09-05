@@ -17,6 +17,7 @@
   "dependencies": {
     "request": "~2.11.0",
     "lodash": "~0.6.1",
+    "sparkxml": "git://github.com/codeforamerica/node-sparkxml.git",
     "xml2json": "~0.2.4"
   },
   "devDependencies": {

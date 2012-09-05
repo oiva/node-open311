@@ -11,7 +11,8 @@ var pathLib = require('path');
 var request = require('request');
 var qs = require('querystring');
 var __ = require('lodash');
-var xmlParser = require('xml2json');
+var spark = require('sparkxml');
+var xml2json = require('xml2json'); // used in submitRequest because of ambiguous Spark results
 var Cities = require('./cities');
 
 /**
@@ -86,8 +87,7 @@ Open311.prototype.serviceDiscovery = function(options, callback) {
     }
 
     if (format === 'xml') {
-      data = xmlParser.toJson(body, {object: true}).discovery;
-      data.endpoints = data.endpoints.endpoint;
+      data = spark.parseXml(body);
     }
     else {
       data = JSON.parse(body);
@@ -139,7 +139,7 @@ Open311.prototype.serviceList = function(callback) {
     }
 
     if (self.format === 'xml') {
-      data = xmlParser.toJson(body, {object: true}).services.service;
+      data = spark.parseXml(body);
     }
     else {
       data = JSON.parse(body);
@@ -163,16 +163,7 @@ Open311.prototype.serviceDefinition = function(service_code, callback) {
     }
 
     if (self.format === 'xml') {
-      data = xmlParser.toJson(body, {object: true}).service_definition;
-      data.attributes = data.attributes.attribute;
-      for (i = 0; i < data.attributes.length; i++) {
-        if (data.attributes[i].values.value) {
-          data.attributes[i].values = data.attributes[i].values.value;
-        }
-        else {
-          data.attributes[i].values = null;
-        }
-      }
+      data = spark.parseXml(body);
     }
     else {
       data = JSON.parse(body);
@@ -215,7 +206,9 @@ Open311.prototype.submitRequest = function(data, callback) {
     }
 
     if (self.format === 'xml') {
-      resData = xmlParser.toJson(body, {object: true}).service_requests.request;
+      // here we're using xml2json because the Open311 Spark Convention
+      // results in ambiguous json: "service_request_id" is indistinguishable from "token"
+      resData = xml2json.toJson(body, {object: true}).service_requests.request;
       resData = [ resData ] // object needs to be wrapped in an array
     }
     else {
@@ -243,7 +236,13 @@ Open311.prototype.token = function(token, callback) {
     }
 
     if (self.format === 'xml') {
-      data = xmlParser.toJson(body, {object: true}).service_requests.request;
+      data = spark.parseXml(body);
+      // Manually check if no service_request_id was returned
+      // this slightly goes against the spec but avoids the non-optimal 
+      // result of Spark convention returning [[TOKEN]]
+      if (__.isArray(data[0])) {
+        data[0] = { token: data[0][0] };
+      }
     }
     else {
       data = JSON.parse(body); // it's returned as an 
@@ -297,12 +296,13 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     }
 
     if (self.format === 'xml') {
-      data = self._parseServiceRequestsXml(body);
+      data = spark.parseXml(body);
     }
     else {
       data = JSON.parse(body);
     }
     
+    // Convert the dates into javascript dates
     __.each(data, function(request) {
       if (request.requested_datetime) {
         request.requested_datetime = new Date(request.requested_datetime);
@@ -324,20 +324,6 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
  * Alias of serviceRequests()
  */
 Open311.prototype.serviceRequest = Open311.prototype.serviceRequests;
-
-/**
- * Utility method for parsing Service Requests XML
- * @param xml 
- */
-
-Open311.prototype._parseServiceRequestsXml = function(xml) {
-  var data;
-  data = xmlParser.toJson(xml, {object: true}).service_requests.request;
-  if (!__.isArray(data)) {
-    data = [ data ];
-  }
-  return data;
-}
 
 /**
  * Utility method for making a GET request to the Open311 API. 
