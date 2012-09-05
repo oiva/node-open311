@@ -1,4 +1,6 @@
-# Overview
+# node-open311
+
+[![Build Status](https://secure.travis-ci.org/codeforamerica/node-open311.png)](http://travis-ci.org/codeforamerica/node-open311)
 
 A Node.js module for interacting with the Open311 API ([GeoReport v2](http://wiki.open311.org/GeoReport_v2)). This module is more than a simple wrapper; it attempts to normalize the response from different Open311 endpoints' _interpretation_ of the Open311 specification to return consistent results, regardless of implementation or format:
 
