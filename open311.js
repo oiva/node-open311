@@ -6,8 +6,6 @@
  * 
  */
 
-var http = require('http');
-var https = require('https');
 var urlLib = require('url');
 var pathLib = require('path');
 var request = require('request');
@@ -242,7 +240,7 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
   var self = this, url, jsonFormats, xmlFormats, data;
 
   // check if there is a service_request_id
-  if(__.isObject(serviceRequestId)) {
+  if( __.isObject(serviceRequestId) && !__.isArray(serviceRequestId) ) {
     params = serviceRequestId;
     serviceRequestId = false;
   }
@@ -252,12 +250,18 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     params = {};
   }
 
-  if (serviceRequestId) {
+  // if serviceRequestId is NOT submitted as an array, use the URL method
+  if (serviceRequestId && !__.isArray(serviceRequestId)) {    
     url = 'requests/' + serviceRequestId;
   }
   else {
     url = 'requests';
   }
+  
+  // if serviceRequestId IS submitted as an array, use the URL method
+  if (serviceRequestId && __.isArray(serviceRequestId)) {
+    params.service_request_id = serviceRequestId.join(',');
+  } 
 
   this._get(url, params, function(err, body) {
     if (err) {
@@ -271,9 +275,6 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     else {
       data = JSON.parse(body);
     }
-
-    jsonFormats = ['application/json'];
-    xmlFormats = ['text/xml'];
 
     callback(null, data);
   });

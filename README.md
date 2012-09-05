@@ -12,7 +12,7 @@ A Node.js module for interacting with the Open311 API ([GeoReport v2](http://wik
 
 ## Brief Example
 
-```
+```javascript
 var Open311 = require('open311');
 	
 // Example Open311 Server: City of Baltimore 
@@ -57,7 +57,7 @@ Optional options:
 - `specification`: when caching, sets the matching API specification of the endpoint server (default `http://wiki.open311.org/GeoReport_v2`);
 - `index`: (optional) when caching, if the Service Discovery list multiple servers with identical production/specification settings, this is the index of the resulting matched servers (default: `0`)
 
-```
+```javascript
 var baltimore = new Open311({
   discovery: "http://311.baltimorecity.gov/open311/discovery.json"
 });
@@ -78,7 +78,7 @@ baltimore.serviceDiscovery({
 
 Fetches a list of acceptable 311 service request types and their associated service codes. (Standard: [GET Service List](http://wiki.open311.org/GeoReport_v2#GET_Service_List))
 
-```
+```javascript
 // an example with Washington, DC, which is an XML-only endpoint
 var dc = new Open311({
   "endpoint": "http://app.311.dc.gov/CWI/Open311/v2/",
@@ -116,11 +116,11 @@ Fetches the service_request_id from a temporary token that was received when sub
 
 `token` should either be a string or number.
 
-### serviceRequests([params], callback) 
+### serviceRequests([[service_request_ids]], [params], callback) 
 Fetch a list of existing service requests based on query parameters (Standard: [GET Service Requests](http://wiki.open311.org/GeoReport_v2#GET_Service_Requests))
 
 Optional params might include those on the existing standard, such as:
-
+- `service_request_id`: a comma delimited list of `service_request_id`s to fetch... or you can submit a javascript array of them as the first argument and they will be formatted correctly in the parameters
 - `service_code`: filter the by the service request's service_code
 - `start_date` / `end_date`: filter by the earliest/latest requested_datetime (when the request was submitted).
 - `status`: filter by the status (`open`/`closed`)
@@ -132,4 +132,48 @@ Or params might include those not on the standard but widely supported, such as:
 
 ### serviceRequest(service_request_id, callback)
 
-Fetches an individual request by its `service_request_id`. (Standard: [GET Service Request](http://wiki.open311.org/GeoReport_v2#GET_Service_Request))
+Fetches an individual request by its `service_request_id`. (Standard: [GET Service Request](http://wiki.open311.org/GeoReport_v2#GET_Service_Request)).
+
+Note that this is just an alias to `Open311.serviceRequests`, so instead of submitting a single string/numerical `service_request_id`, you can submit an array of them of multiple `service_request_id`s too.
+
+e.g. you can do any of these:
+
+
+```javascript
+// as a string
+baltimore.serviceRequest('12-00677322', function(err, data){ 
+  console.log(data); // do something with the data!
+});
+```
+
+OR
+
+```javascript
+// as an array
+baltimore.serviceRequest(['12-00677322'], function(err, data){ 
+  console.log(data); // do something with the data!
+});
+```
+
+OR
+
+```javascript
+// as an even bigger array
+baltimore.serviceRequest(['12-00677322', '12-00677323'], function(err, data){ 
+  console.log(data); // do something with the data!
+});
+```
+
+OR
+
+```javascript
+// as a comma separated query parameter
+// ...but why would you ever want to do that?
+baltimore.serviceRequest({
+  service_request_id: "12-00677322,12-00677323"
+}, function(err, data){ 
+  console.log(data); // do something with the data!
+});
+```
+
+

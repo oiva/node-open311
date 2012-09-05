@@ -468,6 +468,22 @@ describe('.serviceDiscovery()', function() {
       expect(request.get.firstCall.args[0].qs).to.contain.keys(['extended_attributes']);
       done();
     });
+
+    it('should handle arguments of [service_request_ids] & callback (no params)', function(done) {
+      open311.serviceRequests(['abcde', 12345], function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
+      expect(request.get.firstCall.args[0].qs).to.contain.keys(['service_request_id']);
+      expect(request.get.firstCall.args[0].qs.service_request_id).to.equal('abcde,12345');
+      done();
+    });
+    
+    it('should handle arguments of [service_request_ids], params & callback', function(done) {
+      open311.serviceRequests(['abcde', 12345], {"extended_attributes": true}, function(err, data) {});
+      expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
+      expect(request.get.firstCall.args[0].qs).to.contain.keys(['service_request_id', 'extended_attributes']);
+      expect(request.get.firstCall.args[0].qs.service_request_id).to.equal('abcde,12345');
+      done();
+    });
   });
 
   describe('.serviceRequest()', function() {
