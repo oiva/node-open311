@@ -290,8 +290,15 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     }
     
     __.each(data, function(request) {
-      request.requested_datetime = new Date(request.requested_datetime);
-      request.updated_datetime = new Date(request.updated_datetime);
+      if (request.requested_datetime) {
+        request.requested_datetime = new Date(request.requested_datetime);
+      }
+      if (request.requested_datetime) {
+        request.updated_datetime = new Date(request.updated_datetime);
+      }
+      if (request.expected_datetime) {
+        request.expected_datetime = new Date(request.expected_datetime);
+      }
     });
 
     callback(null, data);
