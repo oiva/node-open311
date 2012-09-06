@@ -1,13 +1,21 @@
 {
   "name": "open311",
   "description": "A Node.js module for interacting with an Open311 API.",
-  "version": "0.0.8",
-  "homepage": "http://civic.io",
+  "version": "0.0.9",
+  "homepage": "https://github.com/codeforamerica/node-open311",
   "author": "Mark Headd <mheadd@gmail.com> (http://civic.io)",
-  "main": "./open311",
-  "repositories" : [
-    { "type":"git", "url":"https://github.com/mheadd/node-open311" }
+  "contributors": [ 
+    {
+      "name": "Ben Sheldon",
+      "email": "ben@codeforamerica.org"
+    } 
   ],
+  "main": "./open311",
+  "repository" : { 
+    "type":"git",
+    "url":"https://github.com/codeforamerica/node-open311" 
+  },
+  "license": "BSD",
   "engines": {
     "node": "0.8.x"
   },
