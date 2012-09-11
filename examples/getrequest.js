@@ -1,20 +1,37 @@
 /**
- * Get the detals of a specific service request.
+ * Retrieve Service Requests
+ * Some helpful methods to retrieve existing service requests
  */
-var util = require('util');
-var Open311 = require('../open311').Open311;
+ 
+var Open311 = require('../open311');
+// Normally you'd just write require('open311') if installed through NPM
 
-//Options for the City of Baltimore (see http://311test.baltimorecity.gov/open311).
-var options = {
-        'endpoint': '311test.baltimorecity.gov',
-        'service_path': '/open311/v2/',
-        'jurisdiction_id': 'baltimorecity.gov'
-        };
+// We'll use Baltimore and have the endpoint URLs set automagically (well, it's all in the cities.json file)
 
 // Create a new Open311 object.
-var report = new Open311(options);
+var baltimore = new Open311('baltimore');
 
-// Call getServiceRequest to get the status of a specific request.
-report.getServiceRequest('json', '4e6cbd2a9dc2f112940000bc', function(error, data) {	
-	util.puts(util.inspect(data));	
+// Use this to store a requestId we're looking up
+var requestId;
+
+// First lets retreive a whole mess of open service requests. 
+// We'll pass a (non-standard!!) page_size query that Baltimore's endpoint
+// supports to only receive the latest 5 requests
+baltimore.serviceRequests({ 'status': 'open', 'page_size': 5 }, function(err, data) {
+  if (err) { console.log('\n-- ERROR --\n', err); return; } // handle those errors!
+
+  
+  console.log('\n-- LAST 5 SERVICE REQUESTS IN BALTIMORE --');
+  console.log(data);
+  
+  // Store the service_request_id of the first one we received
+  requestId = data[0]['service_request_id'];
+  
+  // Then fetch just that single service request by its ID#
+  baltimore.serviceRequests(requestId, function(err, data) {
+    if (err) { console.log('\n-- ERROR --\n', err); return; } // handle those errors!
+    
+    console.log('\n-- SERVICE REQUEST WITH ID: %s --', requestId);
+    console.log(data);
+  });
 });

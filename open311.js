@@ -264,6 +264,7 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
 
   // check if there is a service_request_id
   if( __.isObject(serviceRequestId) && !__.isArray(serviceRequestId) ) {
+    callback = params;
     params = serviceRequestId;
     serviceRequestId = false;
   }
@@ -272,9 +273,10 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
     callback = params;
     params = {};
   }
-  
+    
   // clone the params in case of reuse
   params = __.clone(params);
+  
 
   // if serviceRequestId is NOT submitted as an array, use the URL method
   if (serviceRequestId && !__.isArray(serviceRequestId)) {    
@@ -314,7 +316,6 @@ Open311.prototype.serviceRequests = function(serviceRequestId, params, callback)
         request.expected_datetime = new Date(request.expected_datetime);
       }
     });
-
     callback(null, data);
   });
 };
