@@ -21,7 +21,7 @@ baltimore.serviceDiscovery(function(err, data) {
   if (err) { console.log('\n-- ERROR --\n', err); return; } // handle those errors!
   
   console.log('\n-- SERVICE DISCOVERY FOR BALTIMORE --');
-	console.log(data);
+  console.log(data);
 });
 
 // That was fun; now let's save that data into our Open311 object
