@@ -268,6 +268,16 @@ describe('.serviceDiscovery()', function() {
         done();
       });
     });
+    
+    it("should throw an error if the Endpoint isn't set", function(done) {
+      var open311NoEndpoint = new Open311({});      
+      expect(
+        function(){ 
+          open311NoEndpoint.serviceList(function(err, data) {});
+        }
+      ).to.throw('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+      done();
+    });
   });
 
   describe('.serviceDefinition()', function() {
@@ -342,6 +352,16 @@ describe('.serviceDiscovery()', function() {
         done();
       });
     });
+    
+    it("should throw an error if the Endpoint isn't set", function(done) {
+      var open311NoEndpoint = new Open311({});      
+      expect(
+        function(){ 
+          open311NoEndpoint.serviceDefinition('S0301', function(err, data) {});
+        }
+      ).to.throw('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+      done();
+    });
   });
 
   describe('.submitRequest()', function() {
@@ -363,16 +383,27 @@ describe('.serviceDiscovery()', function() {
     it("should throw an error if the API key isn't set", function(done) {
       var open311NoApiKey = new Open311({
         endpoint: 'https://mayors24test.cityofboston.gov/open311/v2/'
-      });
-
-      expect(open311.submitRequest).to.throw('Submitting a Service Request requires an API Key');
+      });      
+      expect(
+        function(){ 
+          open311NoApiKey.submitRequest({}, function(err, data) {}) 
+        }
+      ).to.throw('Submitting a Service Request requires an API Key');
+      done();
+    });
+    
+    it("should throw an error if the Endpoint isn't set", function(done) {
+      var open311NoEndpoint = new Open311({});      
+      expect(
+        function(){ 
+          open311NoEndpoint.submitRequest({}, function(err, data) {}) 
+        }
+      ).to.throw('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
       done();
     });
 
     it("should attach this.apiKey to the form data as `api_key`", function(done) {
       open311.submitRequest({}, function(err, data) {});
-
-
       expect(request.post.firstCall.args[0].form['api_key']).to.equal('API_KEY');
       done();
 
@@ -451,6 +482,16 @@ describe('.serviceDiscovery()', function() {
         done();
       });
     });
+    
+    it("should throw an error if the Endpoint isn't set", function(done) {
+      var open311NoEndpoint = new Open311({});      
+      expect(
+        function(){ 
+          open311NoEndpoint.token('12345', function(err, data) {}) 
+        }
+      ).to.throw('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+      done();
+    });
   });
 
   describe('.serviceRequests()', function() {
@@ -522,6 +563,16 @@ describe('.serviceDiscovery()', function() {
       expect(request.get.firstCall.args[0].url).to.equal('http://app.311.dc.gov/CWI/Open311/v2/requests.xml');
       expect(request.get.firstCall.args[0].qs).to.contain.keys(['service_request_id', 'extended_attributes']);
       expect(request.get.firstCall.args[0].qs.service_request_id).to.equal('abcde,12345');
+      done();
+    });
+    
+    it("should throw an error if the Endpoint isn't set", function(done) {
+      var open311NoEndpoint = new Open311({});      
+      expect(
+        function(){ 
+          open311NoEndpoint.serviceRequests(['abcde', 12345], {"extended_attributes": true}, function(err, data) {});
+        }
+      ).to.throw('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
       done();
     });
     

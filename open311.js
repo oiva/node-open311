@@ -132,6 +132,12 @@ Open311.prototype.serviceDiscovery = function(options, callback) {
  */
 Open311.prototype.serviceList = function(callback) {
   var self = this, data;
+  
+  // make sure the Endpoint URL is set
+  if (typeof self.endpoint === 'undefined') {
+    throw new Error('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+  }
+  
   this._get('services', function(err, body) {
     if (err) {
       callback (err, body);
@@ -156,6 +162,12 @@ Open311.prototype.serviceList = function(callback) {
  */
 Open311.prototype.serviceDefinition = function(service_code, callback) {
   var self = this, data, i;
+  
+  // make sure the Endpoint URL is set
+  if (typeof self.endpoint === 'undefined') {
+    throw new Error('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+  }
+  
   this._get('services/' + service_code, function(err, body) {
     if (err) {
       callback (err, body);
@@ -181,6 +193,11 @@ Open311.prototype.serviceDefinition = function(service_code, callback) {
  */
 Open311.prototype.submitRequest = function(data, callback) {
   var self = this, attribute, resData;
+    
+  // make sure the Endpoint URL is set
+  if (typeof self.endpoint === 'undefined') {
+    throw new Error('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+  }
   
   // deep clone the Service Request data in case the data object is reuesed
   data = __.clone(data, true);
@@ -229,6 +246,12 @@ Open311.prototype.submitRequest = function(data, callback) {
  */
 Open311.prototype.token = function(token, callback) {
   var self = this, data;
+  
+  // make sure the Endpoint URL is set
+  if (typeof self.endpoint === 'undefined') {
+    throw new Error('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+  }
+  
   this._get('tokens/' + token, function(err, body) {
     if (err) {
       callback (err, body);
@@ -261,6 +284,11 @@ Open311.prototype.token = function(token, callback) {
  */
 Open311.prototype.serviceRequests = function(serviceRequestId, params, callback) {
   var self = this, url, jsonFormats, xmlFormats, data;
+
+  // make sure the Endpoint URL is set
+  if (typeof self.endpoint === 'undefined') {
+    throw new Error('You must set set an endpoint URL in your Open311({endpoint: "<URL>"}) object');
+  }
 
   // check if there is a service_request_id
   if( __.isObject(serviceRequestId) && !__.isArray(serviceRequestId) ) {
