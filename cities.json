@@ -21,6 +21,13 @@
     "endpoint": "http://311.baltimorecity.gov/open311/v2/"
   },
   {
+    "id": "chicago",
+    "name": "Chicago, IL",
+    "vendor": "connectedbits",
+    "discovery": "http://311api.cityofchicago.org/open311/discovery.json",
+    "endpoint": "http://311api.cityofchicago.org/open311/v2/"
+  },
+  {
     "id": "dc",
     "name": "Washington, DC",
     "vendor": "inhouse",
