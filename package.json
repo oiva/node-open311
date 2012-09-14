@@ -1,7 +1,7 @@
 {
   "name": "open311",
   "description": "A Node.js module for interacting with an Open311 API.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "homepage": "https://github.com/codeforamerica/node-open311",
   "author": "Mark Headd <mheadd@gmail.com> (http://civic.io)",
   "contributors": [ 
