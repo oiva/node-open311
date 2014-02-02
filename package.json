@@ -17,20 +17,20 @@
   },
   "license": "BSD",
   "engines": {
-    "node": "0.6.x"
+    "node": "0.10.x"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
   },
   "dependencies": {
-    "request": "~2.27.0",
-    "lodash": "~2.4.0",
-    "sparkxml": "git://github.com/oiva/node-sparkxml.git",
+    "request": "~2.33.0",
+    "lodash": "~2.4.1",
+    "sparkxml": "git://github.com/codeforamerica/node-sparkxml.git",
     "xml2json": "~0.3.2"
   },
   "devDependencies": {
-    "mocha":  "~1.4.1",
-    "chai": "~1.2.0",
-    "sinon": "~1.4.2"
+    "mocha":  "~1.17.1",
+    "chai": "~1.9.0",
+    "sinon": "~1.8.1"
   }
 }
